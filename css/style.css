@@ -7233,4 +7233,143 @@ select:focus-visible {
   outline-offset: 2px;
 }
 
+/* ===== Responsive QA fixes (web principal) ===== */
+@media (max-width: 767px) {
+  .header-area .header-top_area .short_contact_list ul li {
+    display: block;
+    margin-bottom: 6px;
+  }
+
+  .header-area .header-top_area .short_contact_list ul li a {
+    display: inline-block;
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    line-height: 1.35;
+  }
+}
+
+@media (max-width: 991px) {
+  .mobile_menu {
+    position: relative;
+    right: auto;
+    width: 100%;
+    z-index: 1000;
+  }
+
+  .slicknav_btn {
+    top: 0;
+    right: 0;
+    margin-top: 0;
+  }
+
+  .slicknav_menu .slicknav_nav {
+    top: 100%;
+    width: 100%;
+    margin-top: 8px;
+    left: 0;
+    right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .slider_area .single_slider {
+    height: auto;
+    min-height: 560px;
+    padding-top: 120px;
+  }
+
+  .slider_area .single_slider .slider_text p {
+    margin-bottom: 28px;
+  }
+}
+
+@media (max-width: 991px) {
+  .reson_area .single_reson .thum {
+    margin-right: 0;
+    padding-bottom: 0;
+  }
+
+  .reson_area .single_reson .help_content {
+    position: relative;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: 16px;
+    padding: 24px 20px;
+  }
+
+  .reson_area .single_reson .help_content .read_more {
+    padding-left: 48px;
+  }
+}
+
+@media (max-width: 991px) {
+  .our_volunteer_area .single_volenteer .volenteer_thumb {
+    padding-right: 0;
+    padding-bottom: 0;
+  }
+
+  .our_volunteer_area .single_volenteer .voolenteer_info {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    margin-top: -16px;
+    padding: 16px 16px 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .our_volunteer_area .single_volenteer .voolenteer_info .info_inner {
+    padding: 0;
+    padding-right: 12px;
+  }
+
+  .our_volunteer_area .single_volenteer .voolenteer_info .social_links {
+    position: static;
+    transform: none;
+  }
+
+  .our_volunteer_area .single_volenteer .voolenteer_info .social_links ul li {
+    display: inline-block;
+    margin: 0 0 0 10px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .latest_activites_area .activites_info {
+    padding-top: 110px;
+    padding-bottom: 100px;
+    padding-right: 40px;
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .make_donation_area .donation_form .single_amount .fixed_donat {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 16px;
+    align-items: center;
+  }
+
+  .make_donation_area .donation_form .single_amount .fixed_donat .select_prise {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .footer .footer_top .footer_widget .news_links li {
+    align-items: flex-start;
+  }
+
+  .footer .footer_top .footer_widget .news_links li .thumb img {
+    width: 84px;
+    height: auto;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */
