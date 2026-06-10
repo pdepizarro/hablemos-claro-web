@@ -1,18 +1,18 @@
-$default: #161616;
+﻿$default: #1B365D;
 $primary: $theme-color2;
-$success: #F2B705;
-$info: #FFD54A;
-$warning: #F2B705;
-$danger: #D91E18;
-$link: #F2B705;
-$disable: (#C7C7C7, .3);
-$primary-color: #D91E18;
-$primary-color1: #FF3B30;
-$title-color: #F3EBDD;
-$text-color: #C7C7C7;
-$white: #F3EBDD;
-$offwhite: #161616;
-$black: #0A0A0A;
+$success: #F1BF00;
+$info: #F1BF00;
+$warning: #F1BF00;
+$danger: #AA151B;
+$link: #F1BF00;
+$disable: (#FAFAFA, .3);
+$primary-color: #AA151B;
+$primary-color1: #AA151B;
+$title-color: #FAFAFA;
+$text-color: #FAFAFA;
+$white: #FAFAFA;
+$offwhite: #1B365D;
+$black: #2C2C2C;
 //    Mixins
 @mixin transition($args: all 0.3s ease 0s) {
     -webkit-transition: $args;

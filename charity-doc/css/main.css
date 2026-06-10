@@ -1,10 +1,10 @@
 ﻿body{
-	background-color:#F3EBDD;
+	background-color:#FAFAFA;
     font-family: "Lato", sans-serif;
     font-weight: 300;
 	font-size:16px;
 	line-height:18px;
-	color:#C7C7C7;
+	color:#FAFAFA;
 }
 
 p{
@@ -12,7 +12,7 @@ p{
 }
 
 a {
-    color: #D91E18;
+    color: #AA151B;
 }
 
 a, a:hover, a:focus{
@@ -21,7 +21,7 @@ a, a:hover, a:focus{
 }
 h1, h2, h3,
 h4, h5, h6 {
-    color: #161616;
+    color: #1B365D;
 	margin:0;
     font-weight: normal;
 }
@@ -37,16 +37,16 @@ strong {
 }
 
 code {
-  background-color: #F3EBDD;
+  background-color: #FAFAFA;
   border-radius: 3px;
-  color: #0A0A0A;
+  color: #2C2C2C;
   font-size: 85%;
   margin: 0;
   padding: 5px 10px;
 }
 
 code a {
-    color: #161616;
+    color: #1B365D;
 }
 
 code a:hover {
@@ -90,7 +90,7 @@ section p {
 }
 
 .syntaxhighlighter {
-    border: 1px solid #F3EBDD;
+    border: 1px solid #FAFAFA;
     max-height: 100% !important;
     padding: 20px 0;
 }
@@ -102,7 +102,7 @@ section p {
 
 
 .left-sidebar {
-    background-color: #FF3B30;
+    background-color: #AA151B;
     float: left;
     min-height: 100%;
     position: fixed;
@@ -115,7 +115,7 @@ section p {
     padding-top: 70px;
 }
 .logo h1{
-    color: #F3EBDD;
+    color: #FAFAFA;
     font-weight: 700;
     text-transform: uppercase;
 }
@@ -126,7 +126,7 @@ section p {
 }
 
 .left-nav ul li a {
-    color: #F3EBDD;
+    color: #FAFAFA;
     display: block;
     padding: 10px 35px;
     -webkit-transition: all 0.3s ease-in 0s;
@@ -137,8 +137,8 @@ section p {
 }
 
 .left-nav ul li a:hover, .left-nav ul li .current {
-    background-color: #F3EBDD;
-    color: #0A0A0A;
+    background-color: #FAFAFA;
+    color: #2C2C2C;
 }
 
 
@@ -149,8 +149,8 @@ section p {
 }
 
 .content-header {
-    border-bottom: 1px solid #F3EBDD;
-    border-top: 1px solid #F3EBDD;
+    border-bottom: 1px solid #FAFAFA;
+    border-top: 1px solid #FAFAFA;
     margin-top: 30px;
     padding: 30px 0 35px;
     text-align: center;
@@ -176,8 +176,8 @@ section p {
 }
 
 .author {
-    border-bottom: 1px solid #F3EBDD;
-    border-top: 1px solid #F3EBDD;
+    border-bottom: 1px solid #FAFAFA;
+    border-top: 1px solid #FAFAFA;
     margin-top: 50px;
     padding: 30px 0;
 }
@@ -214,8 +214,8 @@ section p {
 }
 
 #twitter-feed img {
-    border: 1px solid #F3EBDD;
-    box-shadow: 2px 3px 3px #F3EBDD;
+    border: 1px solid #FAFAFA;
+    box-shadow: 2px 3px 3px #FAFAFA;
     height: auto;
     margin-top: 10px;
     max-width: 100%;
@@ -223,14 +223,14 @@ section p {
 
 /* Hablemos Claro global palette overrides */
 :root {
-    --hc-bg-main: #0A0A0A;
-    --hc-bg-secondary: #161616;
-    --hc-text-main: #F3EBDD;
-    --hc-text-secondary: #C7C7C7;
-    --hc-red: #D91E18;
-    --hc-yellow: #F2B705;
-    --hc-yellow-hover: #FFD54A;
-    --hc-red-hover: #FF3B30;
+    --hc-bg-main: #2C2C2C;
+    --hc-bg-secondary: #1B365D;
+    --hc-text-main: #FAFAFA;
+    --hc-text-secondary: #FAFAFA;
+    --hc-red: #AA151B;
+    --hc-yellow: #F1BF00;
+    --hc-yellow-hover: #F1BF00;
+    --hc-red-hover: #AA151B;
 }
 
 body,
@@ -268,7 +268,7 @@ a:hover,
 .left-nav ul li a:hover,
 .left-nav ul li .current {
     background: var(--hc-yellow) !important;
-    color: #161616 !important;
+    color: #1B365D !important;
 }
 
 .content-header,
@@ -276,7 +276,7 @@ a:hover,
 .syntaxhighlighter,
 code {
     background: var(--hc-bg-secondary) !important;
-    border-color: #161616 !important;
+    border-color: #1B365D !important;
     color: var(--hc-text-main) !important;
 }
 
@@ -351,6 +351,7 @@ select:focus-visible {
     outline: 2px solid var(--hc-yellow);
     outline-offset: 2px;
 }
+
 
 
 
