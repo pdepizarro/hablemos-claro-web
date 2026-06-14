@@ -1,5 +1,6 @@
 ﻿@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800|Yeseva+One&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800|Yeseva+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@700;800&display=swap");
 /* line 1, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_extend.scss */
 .flex-center-start {
   display: -webkit-box;
@@ -2596,7 +2597,7 @@ h3 {
 
 /* Hablemos Claro theme overrides */
 :root {
-  --hc-bg: #2C2C2C;
+  --hc-bg: #000000;
   --hc-surface: #000000;
   --hc-surface-soft: #000000;
   --hc-text: #FAFAFA;
@@ -6964,7 +6965,7 @@ h6 {
 
 /* Hablemos Claro global palette overrides */
 :root {
-  --hc-bg-main: #2C2C2C;
+  --hc-bg-main: #000000;
   --hc-bg-secondary: #000000;
   --hc-text-main: #FAFAFA;
   --hc-text-secondary: #FAFAFA;
@@ -7127,6 +7128,18 @@ a:hover,
 .section_title h3 span::before {
   background: var(--hc-yellow) !important;
   opacity: 0.65 !important;
+}
+
+.section_title h3,
+.section_title h3 span {
+  font-family: "Merriweather", serif !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.01em;
+  text-decoration: none !important;
+}
+
+.section_title h3 span::before {
+  display: none !important;
 }
 
 .popular_causes_area .single_cause .causes_content,
