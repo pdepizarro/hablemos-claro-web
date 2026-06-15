@@ -1068,15 +1068,12 @@ h3 {
   top: 0;
   z-index: 9;
   padding: 0 100px 50px 100px;
-  background: url('../img/components/hablemos_claro_topbar_bg.png') no-repeat center/cover;
-  background-attachment: fixed;
 }
 
 @media (max-width: 767px) {
   /* line 1, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area {
     padding: 0 10px 10px 10px;
-    background-attachment: scroll;
   }
 }
 
@@ -1084,7 +1081,6 @@ h3 {
   /* line 1, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area {
     padding: 0 10px 10px 10px;
-    background-attachment: scroll;
   }
 }
 
@@ -2656,10 +2652,7 @@ body.hablemos-theme {
 
 .hablemos-theme .main-header-area,
 .hablemos-theme .header-area .main-header-area.sticky {
-  background-image: url('../img/components/hablemos_claro_topbar_bg.png');
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: 100% 100%;
+  background: url('../img/components/hablemos_claro_topbar_bg.png') no-repeat center/cover !important;
 }
 
 .hablemos-theme .single_reson,
