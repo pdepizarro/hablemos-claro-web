@@ -1132,7 +1132,7 @@ h3 {
 
 /* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
 .header-area .main-header-area .logo img {
-  width: 80px;
+  width: 120px;
   height: auto;
   object-fit: contain;
 }
@@ -1140,14 +1140,14 @@ h3 {
 @media (max-width: 767px) {
   /* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area .logo img {
-    width: 60px;
+    width: 100px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   /* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area .logo img {
-    width: 70px;
+    width: 90px;
   }
 }
 
@@ -1384,7 +1384,7 @@ h3 {
   transition: transform 500ms ease, background 500ms ease;
   -webkit-transition: transform 500ms ease, background 500ms ease;
   box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1);
-  background: url('../img/components/hablemos_claro_topbar_bg.png') no-repeat center/cover;
+  background: url('../img/components/hablemos_claro_topbar_bg.png') no-repeat left/cover;
   bottom: auto;
 }
 
@@ -2608,6 +2608,7 @@ h3 {
 
 /* Hablemos Claro theme overrides */
 :root {
+  /* Base palette */
   --hc-bg: #000000;
   --hc-surface: #000000;
   --hc-surface-soft: #000000;
@@ -2618,14 +2619,15 @@ h3 {
 }
 
 body.hablemos-theme {
+  /* App background */
   background: radial-gradient(circle at top right, #000000 0%, var(--hc-bg) 60%);
   color: var(--hc-text);
 }
 
+/* Typography */
 .hablemos-theme p,
 .hablemos-theme .section_title p,
 .hablemos-theme .help_content p,
-.hablemos-theme .newsinfo p,
 .hablemos-theme .footer .footer_top .footer_widget .address_text {
   color: var(--hc-muted);
 }
@@ -2640,16 +2642,17 @@ body.hablemos-theme {
   color: var(--hc-text);
 }
 
+/* Main layout surfaces */
 .hablemos-theme .header-area .header-top_area,
 .hablemos-theme .reson_area,
 .hablemos-theme .popular_causes_area,
 .hablemos-theme .our_volunteer_area,
-.hablemos-theme .news__area,
 .hablemos-theme .make_donation_area,
 .hablemos-theme .footer {
   background: var(--hc-bg);
 }
 
+/* Header navigation component */
 .hablemos-theme .main-header-area,
 .hablemos-theme .header-area .main-header-area.sticky {
   background: url('../img/components/hablemos_claro_topbar_bg.png') no-repeat center/cover !important;
@@ -2657,12 +2660,12 @@ body.hablemos-theme {
 
 .hablemos-theme .single_reson,
 .hablemos-theme .single_cause .causes_content,
-.hablemos-theme .single__blog,
 .hablemos-theme .single_volenteer,
 .hablemos-theme .footer .footer_top {
   background: var(--hc-surface);
 }
 
+/* Key sections */
 .hablemos-theme .latest_activites_area .activites_info {
   background: rgba(9, 9, 9, 0.92);
 }
@@ -2704,17 +2707,12 @@ body.hablemos-theme {
   color: var(--hc-accent-yellow) !important;
 }
 
-.hablemos-theme .section_title h3 span,
-.hablemos-theme .single_counter .events p,
-.hablemos-theme .single_counter .events h3,
-.hablemos-theme .single_counter .icon i {
+/* Accent details */
+.hablemos-theme .section_title h3 span {
   color: var(--hc-accent-yellow);
 }
 
-.hablemos-theme .counter_bg {
-  background: linear-gradient(135deg, #000000 0%, #2C2C2C 100%);
-}
-
+/* Donation component */
 .hablemos-theme .fixed_donat {
   background: var(--hc-surface-soft);
 }
@@ -2736,6 +2734,7 @@ body.hablemos-theme {
   color: var(--hc-text);
 }
 
+/* Manifesto component */
 .hablemos-theme .manifesto-card {
   text-align: left !important;
   background: linear-gradient(160deg, rgba(255, 196, 0, 0.05) 0%, rgba(200, 16, 46, 0.04) 100%);
@@ -2798,6 +2797,7 @@ body.hablemos-theme {
   color: rgba(250, 250, 250, 0.78);
 }
 
+/* Responsive adjustments */
 @media (max-width: 991px) {
   .hablemos-theme .slider_area .single_slider {
     min-height: 620px;
@@ -2816,15 +2816,6 @@ body.hablemos-theme {
 
   .hablemos-theme .section_title h3 {
     font-size: 32px;
-  }
-
-  .hablemos-theme .single__blog {
-    flex-direction: column;
-  }
-
-  .hablemos-theme .single__blog .thum,
-  .hablemos-theme .single__blog .newsinfo {
-    width: 100%;
   }
 
   .hablemos-theme .manifesto-card {
