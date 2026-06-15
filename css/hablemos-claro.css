@@ -343,8 +343,8 @@ body.hablemos-theme {
   display: block;
   width: fit-content;
   left: 50%;
-  bottom: 10%;
-  transform: translateX(-50%);
+  bottom: 0;
+  transform: translate(-50%, 50%);
   margin: 0;
   padding: 8px 14px;
   background: rgba(245, 243, 236, 0.96);
