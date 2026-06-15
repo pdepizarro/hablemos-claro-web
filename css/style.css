@@ -1068,7 +1068,6 @@ h3 {
   top: 0;
   z-index: 9;
   padding: 0 100px 50px 100px;
-  background: url('../img/components/hablemos_claro_topbar_bg.png') no-repeat left/cover;
 }
 
 @media (max-width: 767px) {
@@ -1089,25 +1088,15 @@ h3 {
 .header-area .main-header-area {
   background: url('../img/components/hablemos_claro_topbar_bg.png') no-repeat left/cover;
   background-attachment: fixed;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
   padding: 25px 35px;
-  position: absolute;
-  bottom: -50px;
+  position: relative;
+  width: 100%;
   z-index: 999;
-  z-index: 999;
-  left: 100px;
-  top: 70px;
-  bottom: auto;
-  right: 100px;
 }
 
 @media (max-width: 767px) {
   /* line 16, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area {
-    right: 15px;
-    left: 15px;
     padding: 12px 0;
     background-attachment: scroll;
   }
@@ -1116,8 +1105,6 @@ h3 {
 @media (min-width: 768px) and (max-width: 991px) {
   /* line 16, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area {
-    right: 15px;
-    left: 15px;
     padding: 12px 0;
     background-attachment: scroll;
   }
@@ -1126,8 +1113,6 @@ h3 {
 @media (min-width: 992px) and (max-width: 1200px) {
   /* line 16, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area {
-    right: 60px;
-    left: 60px;
   }
 }
 
@@ -2644,6 +2629,7 @@ body.hablemos-theme {
 }
 
 /* Main layout surfaces */
+.hablemos-theme .header-area .header-top_area,
 .hablemos-theme .reson_area,
 .hablemos-theme .popular_causes_area,
 .hablemos-theme .our_volunteer_area,
