@@ -97,6 +97,19 @@ body.hablemos-theme {
   overflow: hidden;
 }
 
+/* En tablet/móvil la topbar se oculta → el header solo tiene la nav bar */
+@media (max-width: 991px) {
+  .hablemos-theme .header-area {
+    height: 90px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hablemos-theme .header-area {
+    height: 80px;
+  }
+}
+
 /* Hijos transparentes para que se vea el fondo del padre */
 .hablemos-theme .header-area .header-top_area,
 .hablemos-theme .header-area .main-header-area {
