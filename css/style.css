@@ -1073,14 +1073,14 @@ h3 {
 @media (max-width: 767px) {
   /* line 1, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area {
-    padding: 0 10px 10px 10px;
+    padding: 0;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   /* line 1, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area {
-    padding: 0 10px 10px 10px;
+    padding: 0;
   }
 }
 
@@ -1091,7 +1091,7 @@ h3 {
   position: relative;
   width: 100%;
   z-index: 999;
-  height: 100px;
+  height: 142px;
   display: flex;
   align-items: center;
   box-sizing: border-box;
@@ -1395,7 +1395,9 @@ h3 {
 
 /* line 230, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
 .header-area .header-top_area {
-  padding: 8px 20px;
+  padding: 6px 20px;
+  height: 45px;
+  box-sizing: border-box;
 }
 
 @media (max-width: 767px) {
