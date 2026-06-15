@@ -1090,7 +1090,7 @@ h3 {
   background-image: url('../img/components/hablemos_claro_topbar_bg.png');
   background-repeat: no-repeat;
   background-position: left center;
-  background-size: cover;
+  background-size: contain;
   background-attachment: scroll;
   padding: 25px;
   position: relative;
@@ -1380,7 +1380,7 @@ h3 {
   background-image: url('../img/components/hablemos_claro_topbar_bg.png');
   background-repeat: no-repeat;
   background-position: left center;
-  background-size: cover;
+  background-size: contain;
   background-attachment: scroll;
   bottom: auto;
 }
@@ -2656,7 +2656,7 @@ body.hablemos-theme {
   background-image: url('../img/components/hablemos_claro_topbar_bg.png') !important;
   background-repeat: no-repeat !important;
   background-position: left center !important;
-  background-size: cover !important;
+  background-size: contain !important;
   background-attachment: scroll !important;
 }
 
