@@ -257,6 +257,7 @@ body.hablemos-theme {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .hablemos-theme #manifiesto .section_title,
@@ -308,6 +309,8 @@ body.hablemos-theme {
 
 .hablemos-theme #manifiesto .single_reson .thum {
   width: 100%;
+  margin-right: 0;
+  padding-bottom: 0;
 }
 
 .hablemos-theme #manifiesto .single_reson .thum .thum_1 {
@@ -336,14 +339,18 @@ body.hablemos-theme {
 }
 
 .hablemos-theme #manifiesto .single_reson .help_content {
-  position: static;
+  position: absolute;
   display: block;
   width: fit-content;
-  margin: 10px auto 0;
+  left: 50%;
+  bottom: 10%;
+  transform: translateX(-50%);
+  margin: 0;
   padding: 8px 14px;
   background: rgba(245, 243, 236, 0.96);
   border-radius: 10px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+  z-index: 2;
 }
 
 .hablemos-theme #manifiesto .single_reson .help_content h4 {
