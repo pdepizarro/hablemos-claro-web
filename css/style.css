@@ -1092,6 +1092,7 @@ h3 {
 .header-area .main-header-area {
   background: url('../img/components/hablemos_claro_topbar_bg.png') no-repeat center/cover;
   background-attachment: fixed;
+  background-color: transparent;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
