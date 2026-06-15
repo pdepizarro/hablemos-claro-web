@@ -1092,21 +1092,26 @@ h3 {
   position: relative;
   width: 100%;
   z-index: 999;
+  min-height: 80px;
+  display: flex;
+  align-items: center;
 }
 
 @media (max-width: 767px) {
   /* line 16, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area {
-    padding: 12px 0;
+    padding: 25px;
     background-attachment: scroll;
+    min-height: 70px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   /* line 16, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area {
-    padding: 12px 0;
+    padding: 25px;
     background-attachment: scroll;
+    min-height: 75px;
   }
 }
 
@@ -1119,7 +1124,7 @@ h3 {
 /* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
 .header-area .main-header-area .logo img {
   width: 120px;
-  height: auto;
+  height: 30px;
   object-fit: contain;
 }
 
@@ -1127,6 +1132,7 @@ h3 {
   /* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area .logo img {
     width: 100px;
+    height: 20px;
   }
 }
 
@@ -1134,6 +1140,7 @@ h3 {
   /* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area .logo img {
     width: 90px;
+    height: 25px;
   }
 }
 
