@@ -94,13 +94,15 @@ body.hablemos-theme {
   background-size: 100% 100%;
   background-attachment: scroll;
   height: 187px;
-  overflow: hidden;
 }
 
 /* En tablet/móvil la topbar se oculta → el header solo tiene la nav bar */
 @media (max-width: 991px) {
   .hablemos-theme .header-area {
     height: 90px;
+  }
+  .hablemos-theme .header-area .header-top_area {
+    display: none !important;
   }
 }
 
