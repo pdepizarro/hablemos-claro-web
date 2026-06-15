@@ -881,6 +881,8 @@ h3 {
   color: #000000;
   line-height: 30px;
   margin-bottom: 0;
+  text-align: justify;
+  white-space: pre-wrap;
 }
 
 @media (max-width: 767px) {
