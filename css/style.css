@@ -1395,6 +1395,7 @@ h3 {
 /* line 230, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
 .header-area .header-top_area {
   padding: 23px 0;
+  background: url('img/components/hablemos_claro_topbar_bg.png') no-repeat center/cover;
 }
 
 @media (max-width: 767px) {
