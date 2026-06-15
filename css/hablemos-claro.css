@@ -162,13 +162,15 @@ body.hablemos-theme {
   }
 
   .hablemos-theme .header-area .slicknav_menu .slicknav_nav {
-    position: absolute;
-    top: calc(100% + 8px);
-    right: 0;
+    position: fixed;
+    top: 86px;
+    right: 12px;
     left: auto;
     width: 240px;
     max-width: 85vw;
-    z-index: 10030;
+    max-height: calc(100vh - 110px);
+    overflow-y: auto;
+    z-index: 2147483000;
     border-radius: 10px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   }
