@@ -94,6 +94,8 @@ body.hablemos-theme {
   background-size: 100% 100%;
   background-attachment: scroll;
   height: 187px;
+  position: relative;
+  z-index: 50000;
 }
 
 /* En tablet/móvil la topbar se oculta → el header solo tiene la nav bar */
@@ -134,6 +136,12 @@ body.hablemos-theme {
 
 /* Menú móvil: asegurar que el desplegable queda por encima del contenido */
 @media (max-width: 991px) {
+  .hablemos-theme .slider_area,
+  .hablemos-theme .slider_area .single_slider {
+    position: relative;
+    z-index: 1;
+  }
+
   .hablemos-theme .header-area,
   .hablemos-theme .header-area .main-header-area,
   .hablemos-theme .header-area .main-header-area .container-fluid,
@@ -150,7 +158,7 @@ body.hablemos-theme {
 
   .hablemos-theme .header-area .slicknav_menu {
     position: relative;
-    z-index: 10020;
+    z-index: 50020;
     background: transparent;
     padding: 0;
   }
@@ -170,7 +178,7 @@ body.hablemos-theme {
     max-width: 85vw;
     max-height: calc(100vh - 110px);
     overflow-y: auto;
-    z-index: 2147483000;
+    z-index: 50030;
     border-radius: 10px;
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   }
