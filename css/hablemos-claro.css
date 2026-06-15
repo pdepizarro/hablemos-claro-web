@@ -132,6 +132,48 @@ body.hablemos-theme {
   background-attachment: scroll !important;
 }
 
+/* Menú móvil: asegurar que el desplegable queda por encima del contenido */
+@media (max-width: 991px) {
+  .hablemos-theme .header-area,
+  .hablemos-theme .header-area .main-header-area,
+  .hablemos-theme .header-area .main-header-area .container-fluid,
+  .hablemos-theme .header-area .main-header-area .container-fluid > .row {
+    overflow: visible;
+  }
+
+  .hablemos-theme .header-area .mobile_menu {
+    position: relative !important;
+    right: auto !important;
+    width: auto !important;
+    z-index: 10020 !important;
+  }
+
+  .hablemos-theme .header-area .slicknav_menu {
+    position: relative;
+    z-index: 10020;
+    background: transparent;
+    padding: 0;
+  }
+
+  .hablemos-theme .header-area .slicknav_btn {
+    top: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+  }
+
+  .hablemos-theme .header-area .slicknav_menu .slicknav_nav {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: auto;
+    width: 240px;
+    max-width: 85vw;
+    z-index: 10030;
+    border-radius: 10px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  }
+}
+
 
 /* =========================================================
    6. NAVEGACIÓN — Links y estados
