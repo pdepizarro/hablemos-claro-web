@@ -3041,7 +3041,7 @@ body.hablemos-theme {
 
 /* line 25, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_reason.scss */
 .reson_area .single_reson .help_content {
-  background: #FAFAFA;
+  background: #1a1a1a;
   position: absolute;
   bottom: 0;
   right: 0;
@@ -3539,7 +3539,7 @@ body.hablemos-theme {
   position: absolute;
   right: 0;
   bottom: 0;
-  background: #FAFAFA;
+  background: #1a1a1a;
   left: 40px;
   top: 90px;
 }
