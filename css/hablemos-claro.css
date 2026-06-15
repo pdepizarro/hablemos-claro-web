@@ -271,6 +271,41 @@ body.hablemos-theme {
   justify-content: center !important;
 }
 
+.hablemos-theme #manifiesto .manifiesto-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.hablemos-theme #manifiesto .manifiesto-grid > .manifiesto-col {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+@media (min-width: 992px) {
+  .hablemos-theme #manifiesto .manifiesto-grid > .manifiesto-col {
+    flex: 0 0 calc((100% - 60px) / 3);
+    max-width: calc((100% - 60px) / 3);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  .hablemos-theme #manifiesto .manifiesto-grid > .manifiesto-col {
+    flex: 0 0 calc((100% - 30px) / 2);
+    max-width: calc((100% - 30px) / 2);
+  }
+}
+
+@media (max-width: 767px) {
+  .hablemos-theme #manifiesto .manifiesto-grid > .manifiesto-col {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
 .hablemos-theme #manifiesto .single_reson .thum {
   width: 100%;
 }
