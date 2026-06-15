@@ -1117,24 +1117,24 @@ h3 {
 /* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
 .header-area .main-header-area .logo img {
   width: auto;
-  height: 120px;
-  max-width: 220px;
+  height: 240px;
+  max-width: 440px;
   object-fit: contain;
 }
 
 @media (max-width: 767px) {
   /* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area .logo img {
-    height: 80px;
-    max-width: 160px;
+    height: 160px;
+    max-width: 320px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   /* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area .logo img {
-    height: 100px;
-    max-width: 180px;
+    height: 200px;
+    max-width: 360px;
   }
 }
 
