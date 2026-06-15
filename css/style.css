@@ -1086,38 +1086,35 @@ h3 {
 
 /* line 16, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
 .header-area .main-header-area {
-  background: url('../img/components/hablemos_claro_topbar_bg.png') no-repeat left/cover;
-  background-attachment: fixed;
-  padding: 25px 35px;
+  background-color: transparent;
+  background-image: url('../img/components/hablemos_claro_topbar_bg.png');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+  background-attachment: scroll;
+  padding: 25px;
   position: relative;
   width: 100%;
   z-index: 999;
-  min-height: 80px;
+  min-height: 120px;
   display: flex;
   align-items: center;
+  box-sizing: border-box;
 }
 
 @media (max-width: 767px) {
   /* line 16, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area {
-    padding: 25px;
-    background-attachment: scroll;
-    min-height: 70px;
+      padding: 25px;
+      min-height: 100px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   /* line 16, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area {
-    padding: 25px;
-    background-attachment: scroll;
-    min-height: 75px;
-  }
-}
-
-@media (min-width: 992px) and (max-width: 1200px) {
-  /* line 16, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
-  .header-area .main-header-area {
+      padding: 25px;
+      min-height: 110px;
   }
 }
 
@@ -1377,7 +1374,12 @@ h3 {
   transition: transform 500ms ease, background 500ms ease;
   -webkit-transition: transform 500ms ease, background 500ms ease;
   box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.1);
-  background: url('../img/components/hablemos_claro_topbar_bg.png') no-repeat left/cover;
+  background-color: transparent;
+  background-image: url('../img/components/hablemos_claro_topbar_bg.png');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: cover;
+  background-attachment: scroll;
   bottom: auto;
 }
 
@@ -2648,7 +2650,12 @@ body.hablemos-theme {
 /* Header navigation component */
 .hablemos-theme .main-header-area,
 .hablemos-theme .header-area .main-header-area.sticky {
-  background: url('../img/components/hablemos_claro_topbar_bg.png') no-repeat left/cover !important;
+  background-color: transparent !important;
+  background-image: url('../img/components/hablemos_claro_topbar_bg.png') !important;
+  background-repeat: no-repeat !important;
+  background-position: left center !important;
+  background-size: cover !important;
+  background-attachment: scroll !important;
 }
 
 .hablemos-theme .single_reson,
