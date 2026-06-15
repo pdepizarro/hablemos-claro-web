@@ -1127,17 +1127,24 @@ h3 {
   }
 }
 
+/* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
+.header-area .main-header-area .logo img {
+  width: 140px;
+  height: auto;
+  object-fit: contain;
+}
+
 @media (max-width: 767px) {
   /* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area .logo img {
-    width: 100px;
+    width: 110px;
   }
 }
 
 @media (min-width: 768px) and (max-width: 991px) {
   /* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .main-header-area .logo img {
-    width: 100px;
+    width: 120px;
   }
 }
 
@@ -1395,13 +1402,16 @@ h3 {
 /* line 230, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
 .header-area .header-top_area {
   padding: 23px 0;
-  background: url('img/components/hablemos_claro_topbar_bg.png') no-repeat center/cover;
+  background: linear-gradient(90deg, rgba(139, 0, 0, 0.95) 0%, rgba(139, 0, 0, 0.92) 100%), url('img/components/hablemos_claro_topbar_bg.png') no-repeat center/cover;
+  background-attachment: fixed;
 }
 
 @media (max-width: 767px) {
   /* line 230, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
   .header-area .header-top_area {
     padding: 10px 0;
+    background: linear-gradient(90deg, rgba(139, 0, 0, 0.96) 0%, rgba(139, 0, 0, 0.94) 100%), url('img/components/hablemos_claro_topbar_bg.png') no-repeat center/cover;
+    background-attachment: scroll;
   }
 }
 
