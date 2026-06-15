@@ -1117,8 +1117,7 @@ h3 {
 /* line 56, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_header.scss */
 .header-area .main-header-area .logo img {
   width: auto;
-  height: 75px;
-  max-width: 200px;
+  height: 200px;
   object-fit: contain;
 }
 
