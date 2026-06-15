@@ -288,16 +288,16 @@ body.hablemos-theme {
   display: block;
 }
 
-.hablemos-theme #manifiesto .row.justify-content-center > div:nth-child(1) .single_reson .thum .thum_1 img {
-  object-position: center 46%;
+.hablemos-theme #manifiesto .container > .row.justify-content-center:nth-of-type(2) > div:nth-child(1) .single_reson .thum .thum_1 img {
+  object-position: 50% 50% !important;
 }
 
-.hablemos-theme #manifiesto .row.justify-content-center > div:nth-child(2) .single_reson .thum .thum_1 img {
-  object-position: center 43%;
+.hablemos-theme #manifiesto .container > .row.justify-content-center:nth-of-type(2) > div:nth-child(2) .single_reson .thum .thum_1 img {
+  object-position: 50% 43% !important;
 }
 
-.hablemos-theme #manifiesto .row.justify-content-center > div:nth-child(3) .single_reson .thum .thum_1 img {
-  object-position: center 38%;
+.hablemos-theme #manifiesto .container > .row.justify-content-center:nth-of-type(2) > div:nth-child(3) .single_reson .thum .thum_1 img {
+  object-position: 50% 38% !important;
 }
 
 .hablemos-theme #manifiesto .single_reson .help_content {
