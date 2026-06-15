@@ -271,7 +271,7 @@ body.hablemos-theme {
   text-align: center;
   font-size: 26px;
   line-height: 1.2;
-  color: #1A1A1A;
+  color: #000000 !important;
 }
 
 .hablemos-theme #manifiesto .single_reson .help_content p,
