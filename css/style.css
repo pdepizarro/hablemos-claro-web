@@ -1068,7 +1068,7 @@ h3 {
   top: 0;
   z-index: 9;
   padding: 0 100px 50px 100px;
-  background: linear-gradient(90deg, rgba(139, 0, 0, 0.70) 0%, rgba(139, 0, 0, 0.65) 100%), url('../img/components/hablemos_claro_topbar_bg.png') no-repeat center/cover;
+  background: url('../img/components/hablemos_claro_topbar_bg.png') no-repeat center/cover;
   background-attachment: fixed;
 }
 
