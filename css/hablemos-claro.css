@@ -284,7 +284,20 @@ body.hablemos-theme {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center center;
   display: block;
+}
+
+.hablemos-theme #manifiesto .row.justify-content-center > div:nth-child(1) .single_reson .thum .thum_1 img {
+  object-position: center 46%;
+}
+
+.hablemos-theme #manifiesto .row.justify-content-center > div:nth-child(2) .single_reson .thum .thum_1 img {
+  object-position: center 43%;
+}
+
+.hablemos-theme #manifiesto .row.justify-content-center > div:nth-child(3) .single_reson .thum .thum_1 img {
+  object-position: center 38%;
 }
 
 .hablemos-theme #manifiesto .single_reson .help_content {
