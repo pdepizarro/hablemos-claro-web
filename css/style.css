@@ -1483,6 +1483,8 @@ h3 {
 /* line 1, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_slider.scss */
 .slider_bg_1 {
   background-image: url(../img/banner/banner.png);
+  background-position: center center;
+  background-repeat: no-repeat;
 }
 
 /* line 4, ../../Arafath/CL/january 2020/242. charity/HTML/scss/_slider.scss */
