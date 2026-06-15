@@ -250,6 +250,32 @@ body.hablemos-theme {
   background: var(--hc-surface);
 }
 
+/* Tarjetas de manifiesto (index): solo caption debajo de la imagen */
+.hablemos-theme #manifiesto .single_reson {
+  background: transparent;
+}
+
+.hablemos-theme #manifiesto .single_reson .help_content {
+  position: static;
+  margin-top: 14px;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.hablemos-theme #manifiesto .single_reson .help_content h4 {
+  margin: 0;
+  text-align: center;
+  font-size: 30px;
+  line-height: 1.2;
+  color: var(--hc-accent-yellow);
+}
+
+.hablemos-theme #manifiesto .single_reson .help_content p,
+.hablemos-theme #manifiesto .single_reson .help_content .read_more {
+  display: none;
+}
+
 
 /* =========================================================
    10. COMPONENTE MANIFIESTO
