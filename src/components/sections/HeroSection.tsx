@@ -1,0 +1,46 @@
+import { Button } from "@/components/ui/Button";
+
+export function HeroSection() {
+  return (
+    <section
+      aria-label="Inicio"
+      className="relative flex min-h-[520px] items-center overflow-hidden bg-black sm:min-h-[620px]"
+      style={{
+        backgroundImage:
+          "url(/img/banner/banner.png)",
+        backgroundSize: "cover",
+        backgroundPosition: "center"
+      }}
+    >
+      {/* Capa de oscurecimiento con gradiente */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.42) 100%)"
+        }}
+        aria-hidden="true"
+      />
+
+      <div className="container relative z-10">
+        <div className="max-w-2xl">
+          <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-widest text-hc-yellow">
+            Hablemos Claro
+          </span>
+          <h1 className="font-heading text-4xl font-bold leading-tight text-hc-text sm:text-5xl lg:text-6xl">
+            Hacemos frente a las ideas que nos quieren débiles
+          </h1>
+          <p className="mt-6 text-lg leading-relaxed text-hc-muted">
+            Desarrollamos el pensamiento crítico de la sociedad construyendo y reconstruyendo los
+            valores que nos hacen fuertes y libres como nación.
+          </p>
+          <div className="mt-8">
+            <Button href="/about" size="lg">
+              Leer manifiesto
+            </Button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}

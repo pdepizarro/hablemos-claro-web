@@ -1,0 +1,32 @@
+# dependencies
+/node_modules
+
+# build outputs
+/.next
+/out
+
+# local env files
+.env*.local
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# misc
+.DS_Store
+*.pem
+Thumbs.db
+
+# test
+/coverage
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# assets generados por scripts/migrate-assets.ps1
+# (se copian desde la carpeta img/ original antes de npm run dev)
+# Descomenta la siguiente línea si prefieres no versionar las imágenes:
+# /public/img
