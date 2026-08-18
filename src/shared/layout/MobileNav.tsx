@@ -102,8 +102,7 @@ export function MobileNav() {
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
-            <p className="text-xs uppercase tracking-[0.28em] text-hc-muted">Navegación</p>
+          <div className="mb-4 flex justify-end">
             <button
               type="button"
               onClick={() => setIsOpen(false)}
