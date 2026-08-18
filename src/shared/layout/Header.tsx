@@ -56,14 +56,18 @@ export function Header() {
       {/* Barra de navegación principal */}
       <div className="container flex h-16 items-center justify-between">
         {/* Logo */}
-        <Link href="/" aria-label="Hablemos Claro — Inicio" className="flex h-full items-center">
+        <Link
+          href="/"
+          aria-label="Hablemos Claro — Inicio"
+          className="relative z-10 flex h-full items-center overflow-visible"
+        >
           <Image
             src="/img/components/logo_hablemos_claro.png"
             alt="Hablemos Claro"
             width={160}
             height={48}
             priority
-            className="h-12 w-auto"
+            className="h-20 w-auto max-w-none -mb-4"
           />
         </Link>
 
