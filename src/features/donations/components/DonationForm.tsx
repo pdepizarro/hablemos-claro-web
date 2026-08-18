@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useSearchParams } from "next/navigation";
 import {
   DONATION_PRESET_AMOUNTS,
   resolveDonationAmount
@@ -24,7 +23,6 @@ function formatEuro(amount: number): string {
 }
 
 export function DonationForm() {
-  const searchParams = useSearchParams();
   const [mode, setMode] = useState<DonationMode>("one_time");
   const [presetAmount, setPresetAmount] = useState<DonationPresetAmount | null>(20);
   const [customAmount, setCustomAmount] = useState<string>("");
@@ -32,7 +30,6 @@ export function DonationForm() {
   const [errorMessage, setErrorMessage] = useState<string>("");
 
   const resolvedAmount = resolveDonationAmount(presetAmount, customAmount);
-  const paymentStatus = searchParams.get("status");
   const cadenceText = mode === "monthly" ? "al mes" : "ahora";
   const modeLabel =
     mode === "monthly" ? "Donación mensual (suscripción)" : "Donación puntual (pago único)";
@@ -170,20 +167,6 @@ export function DonationForm() {
           </div>
         </div>
       </fieldset>
-
-      {(paymentStatus === "success" || paymentStatus === "canceled") && (
-        <p
-          className={`mb-6 rounded-hc-lg border px-4 py-3 text-sm ${
-            paymentStatus === "success"
-              ? "border-hc-yellow/35 bg-hc-yellow/10 text-hc-yellow"
-              : "border-hc-red/35 bg-hc-red/10 text-hc-red"
-          }`}
-        >
-          {paymentStatus === "success"
-            ? "Gracias por tu apoyo. Tu donación se ha registrado correctamente."
-            : "El proceso de pago fue cancelado. Puedes intentarlo de nuevo cuando quieras."}
-        </p>
-      )}
 
       {errorMessage && (
         <p className="mb-6 rounded-hc-lg border border-hc-red/35 bg-hc-red/10 px-4 py-3 text-sm text-hc-red">
