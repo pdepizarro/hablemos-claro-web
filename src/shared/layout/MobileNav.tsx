@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
@@ -10,6 +10,7 @@ import { navLinks, ctaLink } from "@/content/navigation";
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
+  const menuRef = useRef<HTMLElement>(null);
 
   // Cerrar al cambiar de ruta
   useEffect(() => {
@@ -22,6 +23,32 @@ export function MobileNav() {
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setIsOpen(false);
     };
+    document.addEventListener("keydown", onKey);
+    return () => document.removeEventListener("keydown", onKey);
+  }, [isOpen]);
+
+  // Mantener el foco dentro del panel mientras está abierto
+  useEffect(() => {
+    if (!isOpen || !menuRef.current) return;
+
+    const focusable = menuRef.current.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    );
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    first?.focus();
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key !== "Tab" || focusable.length === 0) return;
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
   }, [isOpen]);
@@ -51,47 +78,74 @@ export function MobileNav() {
         )}
       </button>
 
-      {isOpen && (
+      <div
+        id="mobile-nav-menu"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Menú de navegación"
+        aria-hidden={!isOpen}
+        className={`fixed inset-0 z-40 lg:hidden ${
+          isOpen ? "pointer-events-auto" : "pointer-events-none"
+        }`}
+      >
         <div
-          id="mobile-nav-menu"
-          role="dialog"
-          aria-modal="true"
-          aria-label="Menú de navegación"
-          className="fixed inset-x-0 top-20 z-40 lg:hidden"
+          className={`absolute inset-0 bg-black/72 transition-opacity duration-300 ${
+            isOpen ? "opacity-100" : "opacity-0"
+          }`}
+          onClick={() => setIsOpen(false)}
+          aria-hidden="true"
+        />
+
+        <nav
+          ref={menuRef}
+          className={`absolute right-0 top-0 flex h-screen w-80 max-w-[90vw] flex-col overflow-y-auto border-l border-hc-yellow/20 bg-[#060606] px-5 py-6 shadow-2xl transition-transform duration-300 ease-out ${
+            isOpen ? "translate-x-0" : "translate-x-full"
+          }`}
         >
-          {/* Capa oscura detrás */}
-          <div
-            className="absolute inset-0 min-h-screen bg-black/60"
-            onClick={() => setIsOpen(false)}
-            aria-hidden="true"
-          />
-          {/* Panel deslizable desde la derecha */}
-          <nav className="absolute right-0 top-0 h-screen w-72 max-w-[85vw] overflow-y-auto bg-black/97 px-6 py-8 shadow-2xl">
-            <ul className="flex flex-col gap-2">
-              {navLinks.map((link) => (
+          <div className="mb-6 flex items-center justify-between border-b border-white/10 pb-4">
+            <p className="text-xs uppercase tracking-[0.28em] text-hc-muted">Navegación</p>
+            <button
+              type="button"
+              onClick={() => setIsOpen(false)}
+              className="rounded p-2 text-hc-text transition-colors hover:text-hc-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow"
+              aria-label="Cerrar menú de navegación"
+            >
+              <X size={22} aria-hidden="true" />
+            </button>
+          </div>
+
+          <ul className="flex flex-col gap-2">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="block rounded px-2 py-3 text-lg font-semibold text-hc-text transition-colors hover:text-hc-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow"
+                    className={`block rounded-lg px-3 py-3.5 text-lg font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow ${
+                      isActive
+                        ? "border border-hc-yellow/35 bg-hc-yellow/12 text-hc-yellow"
+                        : "text-hc-text hover:bg-white/5 hover:text-hc-yellow"
+                    }`}
                     onClick={() => setIsOpen(false)}
                   >
                     {link.label}
                   </Link>
                 </li>
-              ))}
-              <li className="mt-4">
-                <Link
-                  href={ctaLink.href}
-                  className="block rounded bg-hc-yellow px-4 py-3 text-center text-lg font-bold text-black transition-colors hover:bg-hc-red hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {ctaLink.label}
-                </Link>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      )}
+              );
+            })}
+          </ul>
+
+          <div className="mt-auto border-t border-white/10 pt-6">
+            <Link
+              href={ctaLink.href}
+              className="block rounded bg-hc-yellow px-4 py-3 text-center text-lg font-bold text-black transition-colors hover:bg-hc-red hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow"
+              onClick={() => setIsOpen(false)}
+            >
+              {ctaLink.label}
+            </Link>
+          </div>
+        </nav>
+      </div>
     </>
   );
 }
