@@ -102,17 +102,6 @@ export function MobileNav() {
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
-          <div className="mb-4 flex justify-end">
-            <button
-              type="button"
-              onClick={() => setIsOpen(false)}
-              className="rounded p-2 text-hc-text transition-colors hover:text-hc-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow"
-              aria-label="Cerrar menú de navegación"
-            >
-              <X size={22} aria-hidden="true" />
-            </button>
-          </div>
-
           <ul className="flex flex-col gap-2">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;

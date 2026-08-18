@@ -3,6 +3,9 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { Mail } from "lucide-react";
+
+import { contactEmail } from "@/content/social-links";
 import { contactSchema } from "../schema";
 import type { ContactApiResponse, ContactFormData } from "../types";
 
@@ -68,41 +71,24 @@ export function ContactForm() {
     );
   }
 
+  const fieldClassName =
+    "w-full rounded-hc-lg border border-white/20 bg-black/40 px-4 py-3 text-hc-text placeholder-hc-muted transition-colors focus:border-hc-yellow focus:outline-none";
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
       aria-label="Formulario de contacto"
-      className="flex flex-col gap-5"
+      className="flex flex-col gap-6"
     >
       {status === "error" && (
         <div
           role="alert"
-          className="rounded border border-hc-red/40 bg-hc-red/10 px-4 py-3 text-sm text-hc-red"
+          className="rounded-hc-lg border border-hc-red/40 bg-hc-red/10 px-4 py-3 text-sm text-hc-red"
         >
           {errorMessage}
         </div>
       )}
-
-      <div>
-        <label htmlFor="message" className="mb-1 block text-sm font-semibold text-hc-text">
-          Mensaje <span aria-hidden="true" className="text-hc-red">*</span>
-        </label>
-        <textarea
-          id="message"
-          rows={7}
-          placeholder="Escribe tu mensaje aquí…"
-          aria-required="true"
-          aria-describedby={errors.message ? "message-error" : undefined}
-          className="w-full rounded border border-white/20 bg-black/40 px-3 py-2 text-hc-text placeholder-hc-muted focus:border-hc-yellow focus:outline-none"
-          {...register("message")}
-        />
-        {errors.message && (
-          <p id="message-error" role="alert" className="mt-1 text-sm text-hc-red">
-            {errors.message.message}
-          </p>
-        )}
-      </div>
 
       <div className="grid gap-5 sm:grid-cols-2">
         <div>
@@ -116,7 +102,7 @@ export function ContactForm() {
             autoComplete="name"
             aria-required="true"
             aria-describedby={errors.name ? "name-error" : undefined}
-            className="w-full rounded border border-white/20 bg-black/40 px-3 py-2 text-hc-text placeholder-hc-muted focus:border-hc-yellow focus:outline-none"
+            className={fieldClassName}
             {...register("name")}
           />
           {errors.name && (
@@ -137,7 +123,7 @@ export function ContactForm() {
             autoComplete="email"
             aria-required="true"
             aria-describedby={errors.email ? "email-error" : undefined}
-            className="w-full rounded border border-white/20 bg-black/40 px-3 py-2 text-hc-text placeholder-hc-muted focus:border-hc-yellow focus:outline-none"
+            className={fieldClassName}
             {...register("email")}
           />
           {errors.email && (
@@ -158,7 +144,7 @@ export function ContactForm() {
           placeholder="Asunto de tu mensaje"
           aria-required="true"
           aria-describedby={errors.subject ? "subject-error" : undefined}
-          className="w-full rounded border border-white/20 bg-black/40 px-3 py-2 text-hc-text placeholder-hc-muted focus:border-hc-yellow focus:outline-none"
+          className={fieldClassName}
           {...register("subject")}
         />
         {errors.subject && (
@@ -168,14 +154,54 @@ export function ContactForm() {
         )}
       </div>
 
-      <button
-        type="submit"
-        disabled={status === "loading"}
-        className="mt-2 rounded bg-hc-yellow px-6 py-3 font-bold text-black transition-colors hover:bg-hc-red hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-black disabled:cursor-not-allowed disabled:opacity-50"
-        aria-label="Enviar mensaje de contacto"
-      >
-        {status === "loading" ? "Enviando…" : "Enviar mensaje"}
-      </button>
+      <div>
+        <label htmlFor="message" className="mb-1 block text-sm font-semibold text-hc-text">
+          Mensaje <span aria-hidden="true" className="text-hc-red">*</span>
+        </label>
+        <textarea
+          id="message"
+          rows={8}
+          placeholder="Escribe tu mensaje aquí…"
+          aria-required="true"
+          aria-describedby={errors.message ? "message-error" : undefined}
+          className={`${fieldClassName} min-h-[180px] resize-y`}
+          {...register("message")}
+        />
+        {errors.message && (
+          <p id="message-error" role="alert" className="mt-1 text-sm text-hc-red">
+            {errors.message.message}
+          </p>
+        )}
+      </div>
+
+      <div className="flex flex-col gap-3 sm:flex-row">
+        <button
+          type="submit"
+          disabled={status === "loading"}
+          className="rounded bg-hc-yellow px-6 py-3 font-bold text-black transition-colors hover:bg-[#FFD54A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-black focus-visible:shadow-[0_0_0_4px_rgba(241,191,0,0.28)] disabled:cursor-not-allowed disabled:opacity-50"
+          aria-label="Enviar mensaje de contacto"
+        >
+          {status === "loading" ? "Enviando…" : "Enviar mensaje"}
+        </button>
+
+        <a
+          href={`mailto:${contactEmail}`}
+          className="inline-flex items-center justify-center gap-2 rounded border border-hc-yellow/45 bg-white/5 px-5 py-3 font-semibold text-hc-text transition-colors hover:border-hc-yellow hover:bg-hc-yellow/15 hover:text-hc-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-black focus-visible:shadow-[0_0_0_4px_rgba(241,191,0,0.28)]"
+          aria-label={`Enviar correo a ${contactEmail}`}
+        >
+          <Mail size={18} aria-hidden="true" />
+          <span className="break-all">{contactEmail}</span>
+        </a>
+      </div>
+
+      <p className="text-sm leading-relaxed text-hc-muted">
+        Correo directo:{" "}
+        <a href={`mailto:${contactEmail}`} className="font-semibold text-hc-yellow hover:text-hc-red">
+          {contactEmail}
+        </a>
+        . Incluye asunto claro y forma de contacto para que podamos responderte con rapidez.
+      </p>
+
     </form>
   );
 }
