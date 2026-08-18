@@ -39,10 +39,7 @@ export function AboutPageContent() {
               </div>
 
               <div className="space-y-6 text-justify text-hc-muted">
-                <p
-                  className="text-lg leading-relaxed"
-                  style={{ color: "#FFF7CF" }}
-                >
+                <p className="leading-relaxed">
                   Hablemos Claro nace para despertar el sentido crítico de la población de España,
                   poniendo sobre la mesa las cuestiones que comprometen nuestra soberanía, seguridad
                   y bienestar en un ejercicio de nuestro derecho de libertad de expresión.

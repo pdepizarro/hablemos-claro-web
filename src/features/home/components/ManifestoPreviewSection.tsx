@@ -30,8 +30,8 @@ export function ManifestoPreviewSection() {
                   sizes="(min-width: 1024px) 26vw, (min-width: 640px) 28vw, 30vw"
                 />
               </div>
-              <div className="absolute bottom-0 left-1/2 z-10 w-[90%] -translate-x-1/2 translate-y-1/2 rounded-lg bg-white/95 px-2 py-1 shadow-md sm:px-4 sm:py-2">
-                <span className="block text-center font-heading text-sm font-bold leading-tight text-black sm:text-xl lg:text-2xl">
+              <div className="absolute bottom-0 left-1/2 z-10 flex min-h-[2.1rem] w-[96%] -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-lg bg-white/95 px-1.5 py-1 shadow-md sm:min-h-0 sm:w-[90%] sm:px-4 sm:py-2">
+                <span className="block text-center font-heading text-[0.72rem] font-bold leading-none text-black sm:text-xl lg:text-2xl">
                   {label}
                 </span>
               </div>
