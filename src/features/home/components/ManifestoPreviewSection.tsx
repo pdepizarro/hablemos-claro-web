@@ -18,24 +18,22 @@ export function ManifestoPreviewSection() {
           </SectionTitle>
         </div>
 
-        <ul className="flex flex-wrap justify-center gap-8">
+        <ul className="grid grid-cols-3 gap-3 sm:gap-6 lg:gap-8">
           {cards.map(({ label, src, alt }) => (
-            <li
-              key={label}
-              className="relative flex w-full flex-col items-center sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.5rem)]"
-            >
+            <li key={label} className="relative flex min-w-0 flex-col items-center">
               <div className="relative aspect-[2/3] w-full overflow-hidden rounded-hc-lg">
                 <Image
                   src={src}
                   alt={alt}
                   fill
                   className="object-cover"
-                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                  sizes="(min-width: 1024px) 26vw, (min-width: 640px) 28vw, 30vw"
                 />
               </div>
-              {/* Caption flotante */}
-              <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 translate-y-1/2 whitespace-nowrap rounded-lg bg-white/95 px-4 py-2 shadow-md">
-                <span className="font-heading text-2xl font-bold text-black">{label}</span>
+              <div className="absolute bottom-0 left-1/2 z-10 w-[90%] -translate-x-1/2 translate-y-1/2 rounded-lg bg-white/95 px-2 py-1 shadow-md sm:px-4 sm:py-2">
+                <span className="block text-center font-heading text-[0.7rem] font-bold leading-tight text-black sm:text-xl lg:text-2xl">
+                  {label}
+                </span>
               </div>
             </li>
           ))}
