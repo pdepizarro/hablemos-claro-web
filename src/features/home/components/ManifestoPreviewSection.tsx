@@ -3,7 +3,7 @@ import Image from "next/image";
 import { Highlight, Section, SectionTitle } from "@/shared/ui";
 
 const cards = [
-  { label: "Discutimos", src: "/img/help/1.png", alt: "Tres personas debatiendo" },
+  { label: "Hablamos", src: "/img/help/1.png", alt: "Tres personas debatiendo" },
   { label: "Reflexionamos", src: "/img/help/2.png", alt: "Persona leyendo y reflexionando" },
   { label: "Actuamos", src: "/img/help/3.png", alt: "Personas tomando acción conjunta" }
 ];

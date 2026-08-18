@@ -29,7 +29,7 @@ export function HeroSection() {
             Hablemos Claro
           </span>
           <h1 className="font-heading text-4xl font-bold leading-tight text-hc-text sm:text-5xl lg:text-6xl">
-            Hacemos frente a las ideas que nos quieren débiles
+            Hablamos de una sociedad más crítica, libre y fuerte
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-hc-muted">
             Desarrollamos el pensamiento crítico de la sociedad construyendo y reconstruyendo los
