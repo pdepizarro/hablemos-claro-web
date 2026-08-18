@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { siteConfig } from "@/config/site";
+import { siteConfig } from "./site";
 
 export const defaultMetadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

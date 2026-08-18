@@ -1,6 +1,5 @@
-import { Section } from "@/components/ui/Section";
-import { SectionTitle, Highlight } from "@/components/ui/SectionTitle";
-import { Button } from "@/components/ui/Button";
+import { Button, Highlight, Section, SectionTitle } from "@/shared/ui";
+import { routes } from "@/shared/config";
 
 export function DonationSection() {
   return (
@@ -72,7 +71,7 @@ export function DonationSection() {
           </form>
 
           <div className="text-center">
-            <Button href="/donate" size="lg" className="w-full sm:w-auto">
+            <Button href={routes.donate} size="lg" className="w-full sm:w-auto">
               Ir a pasarela de pago
             </Button>
           </div>

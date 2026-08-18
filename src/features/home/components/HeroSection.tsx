@@ -1,4 +1,5 @@
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/shared/ui";
+import { routes } from "@/shared/config";
 
 export function HeroSection() {
   return (
@@ -35,7 +36,7 @@ export function HeroSection() {
             valores que nos hacen fuertes y libres como nación.
           </p>
           <div className="mt-8">
-            <Button href="/about" size="lg">
+            <Button href={routes.about} size="lg">
               Leer manifiesto
             </Button>
           </div>

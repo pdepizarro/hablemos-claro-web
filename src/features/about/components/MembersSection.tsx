@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { Section } from "@/components/ui/Section";
-import { SectionTitle, Highlight } from "@/components/ui/SectionTitle";
+
+import { Highlight, Section, SectionTitle } from "@/shared/ui";
 
 type Member = {
   name: string;

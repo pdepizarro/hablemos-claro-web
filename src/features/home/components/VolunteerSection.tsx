@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/Button";
-import { SectionTitle, Highlight } from "@/components/ui/SectionTitle";
+import { Button, Highlight, SectionTitle } from "@/shared/ui";
+import { routes } from "@/shared/config";
 
 const VIDEO_URL = "https://www.youtube.com/watch?v=MG3jGHnBVQs";
 
@@ -57,7 +57,7 @@ export function VolunteerSection() {
               constructiva.
             </p>
             <div className="mt-8">
-              <Button href="/contact" variant="secondary">
+              <Button href={routes.contact} variant="secondary">
                 Quiero ser voluntario
               </Button>
             </div>

@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { contactSchema } from "../schemas/contact.schema";
-import type { ContactFormData, ContactApiResponse } from "../types/contact.types";
+import { contactSchema } from "../schema";
+import type { ContactApiResponse, ContactFormData } from "../types";
 
 type Status = "idle" | "loading" | "success" | "error";
 

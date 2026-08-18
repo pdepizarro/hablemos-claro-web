@@ -1,226 +1,245 @@
 # Arquitectura del proyecto
 
-## Stack tecnológico
+## Resumen
 
-| Capa | Tecnología | Versión |
-|---|---|---|
-| Framework | Next.js App Router | 15 |
-| Lenguaje | TypeScript | 5 (modo estricto) |
-| Estilos | Tailwind CSS | 3 |
-| Fuentes | Yeseva One + Open Sans | via `next/font/google` |
-| Formularios | React Hook Form + Zod | 7 / 3 |
-| Email | Resend | 4 |
-| Iconos | Lucide React | 0.460 |
-| Tests | Vitest + React Testing Library | 2 / 16 |
-| Linting | ESLint (next/core-web-vitals) | 9 |
-| Formato | Prettier | 3 |
+La aplicación sigue una estructura **feature-based con capas claras**:
 
----
+- **`src/app/`**: routing y layouts de Next.js App Router, con lógica mínima
+- **`src/features/`**: dominios completos y autocontenidos
+- **`src/shared/`**: piezas reutilizables transversales
+- **`src/content/`**: contenido estático desacoplado
+- **`src/styles/`**: estilos globales
 
-## Estructura de carpetas
+El objetivo es escalar sin mezclar UI compartida, contenido editorial y lógica de dominio.
 
-```
+## Stack
+
+| Capa | Tecnología |
+| --- | --- |
+| Framework | Next.js 15 App Router |
+| Lenguaje | TypeScript 5 strict |
+| Estilos | Tailwind CSS 3 |
+| Formularios | React Hook Form + Zod |
+| Email | Resend |
+| Iconos | Lucide React |
+| Tests | Vitest + Testing Library |
+
+## Estructura actual
+
+```text
 src/
-  app/                         # Rutas de Next.js (App Router)
-  components/
-    layout/                    # Header, Footer, MobileNav
-    sections/                  # Secciones específicas de cada página
-    ui/                        # Componentes genéricos reutilizables
-  config/                      # Configuración centralizada (site, routes, metadata)
-  content/                     # Datos desacoplados de la presentación
+  app/
+    about/
+    api/contact/
+    contact/
+    donate/
+    error.tsx
+    layout.tsx
+    not-found.tsx
+    page.tsx
+    robots.ts
+    sitemap.ts
+  content/
+    footer-content.ts
+    navigation.ts
+    social-links.ts
   features/
-    contact/                   # Todo lo relativo al formulario de contacto
-    donations/                 # Todo lo relativo a donaciones
-  test/                        # Setup global de tests
+    about/
+      components/
+      index.ts
+    contact/
+      components/
+      services/
+      index.ts
+      schema.ts
+      types.ts
+    donations/
+      components/
+      index.ts
+      types.ts
+    home/
+      components/
+      index.ts
+  shared/
+    config/
+      index.ts
+      metadata.ts
+      routes.ts
+      site.ts
+    layout/
+      index.ts
+      Footer.tsx
+      Header.tsx
+      MobileNav.tsx
+    ui/
+      index.ts
+      Button.tsx
+      Section.tsx
+      SectionTitle.tsx
+  styles/
+    globals.css
+  test/
+    setup.ts
 ```
 
----
-
-## Responsabilidades por carpeta
+## Responsabilidades por capa
 
 ### `src/app/`
 
-Contiene exclusivamente las rutas de Next.js App Router. Cada `page.tsx` es un Server Component que compone secciones y recibe su propia metadata de SEO. No contiene lógica de negocio.
+Solo contiene entrada de rutas y composición de alto nivel.
 
-```
-app/
-  layout.tsx          # Layout raíz: fuentes, skip link, Header, Footer, JSON-LD
-  page.tsx            # / — Inicio
-  about/page.tsx      # /about — Quiénes somos + Manifiesto + Socios
-  contact/page.tsx    # /contact — Formulario de contacto
-  donate/page.tsx     # /donate — Compra libertad
-  api/contact/        # POST /api/contact — envío de correo
-  sitemap.ts          # /sitemap.xml generado automáticamente
-  robots.ts           # /robots.txt generado automáticamente
-  error.tsx           # Boundary de errores (Client Component)
-  not-found.tsx       # Página 404
-```
+- [layout.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/app/layout.tsx): layout raíz, fuentes, JSON-LD, skip link y shell global
+- [page.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/app/page.tsx): delega en la feature de home
+- [about/page.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/app/about/page.tsx): delega en la feature about
+- [contact/page.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/app/contact/page.tsx): delega en la feature contact
+- [donate/page.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/app/donate/page.tsx): delega en la feature donations
+- [route.ts](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/app/api/contact/route.ts): API route del contacto
 
-### `src/components/layout/`
-
-Componentes presentes en todas las páginas a través del layout raíz.
-
-- **`Header.tsx`** — Server Component. Topbar con email y redes, barra de navegación con logo y CTA. Renderiza `MobileNav` para móvil.
-- **`Footer.tsx`** — Server Component. Cuatro columnas: logo + descripción + redes, secciones, contacto, redes próximamente.
-- **`MobileNav.tsx`** — **Client Component** (único en el layout). Gestiona el estado open/close del menú móvil, cierre con Escape, cierre por ruta y bloqueo del scroll de body.
-
-### `src/components/sections/`
-
-Componentes de sección específicos por página. Todos son Server Components.
-
-| Componente | Página | Descripción |
-|---|---|---|
-| `HeroSection` | `/` | Banner principal con imagen de fondo, headline y CTA |
-| `ManifestoPreviewSection` | `/` | Tres tarjetas con imagen y caption flotante |
-| `VolunteerSection` | `/` | Sección con fondo oscuro, enlace a vídeo YouTube y CTA |
-| `DonationSection` | `/` | Bloque de selección de importe (estático, Stripe pendiente) |
-| `MembersSection` | `/about` | Grid de fotos de socios principales con overlay de nombre/cargo |
-
-### `src/components/ui/`
-
-Componentes de interfaz genéricos sin lógica de dominio.
-
-- **`Button`** — Discriminated union entre `<button>` y `<Link>`/`<a>`. Variantes `primary`, `secondary`, `ghost`. Tamaños `sm`, `md`, `lg`. Sin `any`.
-- **`Section`** — Wrapper semántico `<section>` con padding vertical configurable.
-- **`SectionTitle` / `Highlight`** — Tipografía de título de sección con nivel configurable (`h1`–`h4`) y span de color amarillo acento.
-
-### `src/config/`
-
-Configuración centralizada. Ningún componente hardcodea estos valores.
-
-- **`site.ts`** — nombre, descripción, locale, URL del sitio.
-- **`routes.ts`** — mapa de rutas tipado como objeto constante.
-- **`metadata.ts`** — `defaultMetadata` de Next.js con Open Graph, Twitter Cards y robots.
-
-### `src/content/`
-
-Datos desacoplados de la presentación. Cambiar un enlace de navegación, un dato de contacto o un texto de footer no requiere tocar ningún componente.
-
-- **`navigation.ts`** — `navLinks[]` y `ctaLink`.
-- **`social-links.ts`** — `socialLinks[]`, `contactEmail`, `contactPhone`.
-- **`footer-content.ts`** — `footerColumns[]`, `footerDescription`, `copyrightOwner`.
+Regla: **`app/` no debe alojar lógica de dominio ni markup extenso reutilizable**.
 
 ### `src/features/`
 
-Agrupación por funcionalidad cuando existe lógica propia (schema, tipos, servicio, componente interactivo).
+Cada carpeta representa una funcionalidad o área de negocio con su propia API pública.
+
+#### `features/home/`
+
+- secciones de la home
+- [HomePageContent.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/home/components/HomePageContent.tsx) compone la portada
+- [index.ts](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/home/index.ts) expone solo lo público
+
+#### `features/about/`
+
+- contenido específico de “Quiénes somos”
+- [AboutPageContent.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/about/components/AboutPageContent.tsx)
+- [MembersSection.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/about/components/MembersSection.tsx)
 
 #### `features/contact/`
 
-```
-schemas/contact.schema.ts    # Schema Zod con mensajes en español
-types/contact.types.ts       # ContactFormData (inferido de Zod), ContactApiResponse
-services/contact.service.ts  # sendContactEmail() — integración Resend, fallback dev
-components/ContactForm.tsx   # Client Component: React Hook Form + estados UI
-```
-
-El API route `app/api/contact/route.ts` valida con Zod, aplica rate-limiting en memoria y llama al servicio. No expone detalles internos al cliente.
+- [schema.ts](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/contact/schema.ts): fuente de verdad Zod
+- [types.ts](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/contact/types.ts): tipos derivados
+- [contact.service.ts](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/contact/services/contact.service.ts): integración de email
+- [ContactForm.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/contact/components/ContactForm.tsx): client component interactivo
+- [ContactPageContent.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/contact/components/ContactPageContent.tsx): composición de página
 
 #### `features/donations/`
 
+- [DonationForm.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/donations/components/DonationForm.tsx): formulario preparado para Stripe
+- [DonatePageContent.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/donations/components/DonatePageContent.tsx)
+- [types.ts](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/donations/types.ts): tipos y helpers del dominio
+
+### `src/shared/`
+
+Infraestructura reutilizable entre features.
+
+#### `shared/ui/`
+
+UI pura sin conocimiento de negocio:
+
+- [Button.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/shared/ui/Button.tsx)
+- [Section.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/shared/ui/Section.tsx)
+- [SectionTitle.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/shared/ui/SectionTitle.tsx)
+
+#### `shared/layout/`
+
+Shell global compartido:
+
+- [Header.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/shared/layout/Header.tsx)
+- [Footer.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/shared/layout/Footer.tsx)
+- [MobileNav.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/shared/layout/MobileNav.tsx)
+
+#### `shared/config/`
+
+Configuración centralizada y tipada:
+
+- [site.ts](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/shared/config/site.ts)
+- [routes.ts](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/shared/config/routes.ts)
+- [metadata.ts](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/shared/config/metadata.ts)
+
+### `src/content/`
+
+Datos editoriales estáticos. Puede evolucionar a i18n o CMS sin tocar la capa visual.
+
+- [navigation.ts](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/content/navigation.ts)
+- [footer-content.ts](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/content/footer-content.ts)
+- [social-links.ts](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/content/social-links.ts)
+
+### `src/styles/`
+
+- [globals.css](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/styles/globals.css): estilos globales importados desde el root layout
+
+## Convenciones
+
+### Server Components por defecto
+
+Todo componente es server por defecto salvo necesidad real de estado, efectos o APIs del navegador.
+
+Client Components actuales:
+
+- [MobileNav.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/shared/layout/MobileNav.tsx)
+- [ContactForm.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/contact/components/ContactForm.tsx)
+- [DonationForm.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/features/donations/components/DonationForm.tsx)
+- [error.tsx](C:/Users/ppiza/Desktop/hablemos_claro/web/hablemos-claro-web/src/app/error.tsx)
+
+### API pública por feature
+
+Cada feature debe tener un `index.ts` que exponga solo su superficie pública.
+
+Ejemplos:
+
+- `@/features/contact`
+- `@/features/donations`
+- `@/features/home`
+- `@/features/about`
+
+Desde fuera de la feature deben evitarse imports profundos salvo necesidad excepcional.
+
+### Reglas de ubicación
+
+- Si algo es reutilizable entre dominios, va a `shared/`
+- Si algo representa una capacidad de negocio o una página compuesta, va a `features/`
+- Si es contenido editable/estático, va a `content/`
+- Si define rutas, metadata o identidad del sitio, va a `shared/config/`
+
+### Naming
+
+- Componentes: `PascalCase.tsx`
+- Utilidades, config, schemas y servicios: `camelCase.ts` cuando aplique
+- Barrels públicos: `index.ts`
+
+## Formularios
+
+Patrón del contacto:
+
+```text
+schema.ts
+  -> types.ts con z.infer
+  -> ContactForm.tsx con react-hook-form + zodResolver
+  -> POST /api/contact
+  -> contact.service.ts
 ```
-types/donations.types.ts          # DonationAmount, DonationFormData, resolveAmount()
-components/DonationForm.tsx       # Client Component: selector de importe, preparado para Stripe
-```
 
----
+Esto evita duplicar reglas entre cliente y servidor.
 
-## Server Components y Client Components
+## Estilo y marca
 
-Por defecto todos los componentes son Server Components. Se añade `"use client"` únicamente cuando es estrictamente necesario.
+- base negra y neutros oscuros
+- acento amarillo principal
+- acento rojo secundario
+- alto contraste y enfoque mobile-first
 
-| Componente | Tipo | Motivo |
-|---|---|---|
-| `MobileNav` | Client | Estado open/close, eventos de teclado, efecto de scroll |
-| `ContactForm` | Client | React Hook Form, fetch al API, estados loading/success/error |
-| `DonationForm` | Client | Estado de importe seleccionado |
-| `error.tsx` | Client | Requerido por Next.js App Router |
-| El resto | **Server** | — |
+Estas reglas se reflejan en Tailwind y en la composición de secciones institucionales.
 
----
+## Escalabilidad recomendada
 
-## Gestión de estilos
+Nuevas áreas deberían seguir el mismo patrón:
 
-Tailwind CSS con tokens de marca definidos en `tailwind.config.ts`:
+- `src/features/events/`
+- `src/features/newsletter/`
+- `src/features/news/`
 
-```ts
-colors: {
-  hc: {
-    bg:     "#000000",   // fondo base
-    text:   "#FAFAFA",   // texto principal
-    muted:  "#D9D9D9",   // texto secundario
-    yellow: "#F1BF00",   // acento primario (bandera de España)
-    red:    "#AA151B"    // acento secundario (bandera de España)
-  }
-}
-```
+Si aparecen helpers globales o tipos compartidos, se podrán añadir:
 
-Fuentes en variables CSS (`--font-heading`, `--font-body`) cargadas con `next/font/google` en el layout raíz, sin bloqueo de render.
+- `src/shared/lib/`
+- `src/shared/types/`
 
-No se usa `@apply` salvo en `globals.css` para aplicar las fuentes a `body` y `h1`–`h6`. Sin CSS global de componentes.
-
----
-
-## Gestión de formularios
-
-El formulario de contacto sigue el patrón:
-
-```
-Schema Zod (fuente de verdad)
-  → tipos derivados con z.infer
-  → React Hook Form con zodResolver en el Client Component
-  → fetch POST /api/contact
-  → API route: parse body, validar con Zod, llamar al servicio
-  → servicio: llamar a Resend (o log en dev si no hay API key)
-```
-
-Errores de validación se muestran por campo con `role="alert"` para lectores de pantalla. El botón se deshabilita durante el envío para evitar dobles envíos.
-
----
-
-## SEO técnico
-
-- `defaultMetadata` en `src/config/metadata.ts` con título template, descripción, Open Graph y Twitter Cards.
-- Cada `page.tsx` exporta su propia `metadata` con título y descripción específicos.
-- `sitemap.ts` genera `/sitemap.xml` automáticamente.
-- `robots.ts` genera `/robots.txt` con reglas y referencia al sitemap.
-- JSON-LD de tipo `Organization` en el layout raíz.
-- `lang="es"` en `<html>`.
-- Skip link de accesibilidad al contenido principal.
-
----
-
-## Preparación para funcionalidades futuras
-
-El proyecto está estructurado para crecer sin reescrituras:
-
-| Funcionalidad | Dónde añadir |
-|---|---|
-| Donaciones reales con Stripe | `features/donations/services/`, nuevo API route `/api/donations/create-intent` |
-| Eventos | Nueva feature `features/events/` + ruta `app/events/` |
-| Noticias / artículos | `app/news/[slug]/` + MDX o CMS headless |
-| Autenticación / área privada | `app/(private)/layout.tsx` con middleware de Next.js |
-| Newsletter | `features/newsletter/` + integración Brevo/Mailchimp |
-| i18n | `next-intl` o `i18next` con rutas `/es/`, `/en/` |
-| Analítica | `app/layout.tsx` — añadir `<Script>` de Plausible o Vercel Analytics |
-| Consentimiento de cookies | Componente Client en layout raíz |
-| CMS | Reemplazar arrays en `src/content/` por llamadas a Contentful, Sanity o Directus |
-
----
-
-## Decisiones técnicas
-
-**¿Por qué Yeseva One + Open Sans y no las fuentes anteriores?**
-La plantilla original cargaba Yeseva One y Open Sans desde Google Fonts con dos `@import` duplicados en `style.css`. Se mantienen las mismas fuentes pero cargadas con `next/font/google` para eliminar bloqueo de render y la petición duplicada.
-
-**¿Por qué no se usa Redux ni Context API?**
-El proyecto no tiene estado compartido entre rutas. El único estado es local a formularios y al menú móvil. Redux sería sobrearquitectura.
-
-**¿Por qué rate-limiting en memoria en el API route?**
-Es adecuado para un despliegue de instancia única (servidor tradicional). En Vercel (serverless), cada invocación puede ser una instancia diferente, por lo que el comentario del código indica migrar a Upstash Redis cuando se despliegue allí.
-
-**¿Por qué `DonationForm` está deshabilitado?**
-La pasarela Stripe requiere cuenta verificada, clave de producción y webhook. Se muestra la UI completa con el botón deshabilitado para que el flujo visual sea correcto desde el primer despliegue y la integración no rompa nada al activarse.
-
-**Elementos deliberadamente no abstraídos:**
-- El JSON-LD del layout raíz es un objeto literal inline. Abstraerlo a un helper no aportaría mantenibilidad real para un único tipo de dato estructurado.
-- Los textos del Manifiesto están en el JSX de `about/page.tsx` porque son contenido fijo de largo plazo que no se edita con frecuencia.
+sin romper la arquitectura actual.

@@ -1,4 +1,4 @@
-import type { ContactFormData } from "../types/contact.types";
+import type { ContactFormData } from "../types";
 
 /**
  * Envía el mensaje de contacto por correo electrónico mediante Resend.

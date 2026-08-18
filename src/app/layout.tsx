@@ -1,12 +1,9 @@
 import type { Metadata } from "next";
 import { Yeseva_One, Open_Sans } from "next/font/google";
 
-import { defaultMetadata } from "@/config/metadata";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { siteConfig } from "@/config/site";
-
-import "./globals.css";
+import { defaultMetadata, siteConfig } from "@/shared/config";
+import { Footer, Header } from "@/shared/layout";
+import "@/styles/globals.css";
 
 const headingFont = Yeseva_One({
   subsets: ["latin"],

@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
-import { contactSchema } from "@/features/contact/schemas/contact.schema";
-import { sendContactEmail } from "@/features/contact/services/contact.service";
-import type { ContactApiResponse } from "@/features/contact/types/contact.types";
+import { contactSchema, sendContactEmail } from "@/features/contact";
+import type { ContactApiResponse } from "@/features/contact";
 
 /**
  * Rate limiting en memoria. Adecuado para una instancia única.

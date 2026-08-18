@@ -1,6 +1,6 @@
 import Image from "next/image";
-import { Section } from "@/components/ui/Section";
-import { SectionTitle, Highlight } from "@/components/ui/SectionTitle";
+
+import { Highlight, Section, SectionTitle } from "@/shared/ui";
 
 const cards = [
   { label: "Discutimos", src: "/img/help/1.png", alt: "Tres personas debatiendo" },
@@ -25,7 +25,13 @@ export function ManifestoPreviewSection() {
               className="relative flex w-full flex-col items-center sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.5rem)]"
             >
               <div className="relative aspect-[2/3] w-full overflow-hidden rounded-hc-lg">
-                <Image src={src} alt={alt} fill className="object-cover" sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw" />
+                <Image
+                  src={src}
+                  alt={alt}
+                  fill
+                  className="object-cover"
+                  sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                />
               </div>
               {/* Caption flotante */}
               <div className="absolute bottom-0 left-1/2 z-10 -translate-x-1/2 translate-y-1/2 whitespace-nowrap rounded-lg bg-white/95 px-4 py-2 shadow-md">

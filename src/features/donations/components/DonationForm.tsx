@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import type { DonationAmount } from "../types/donations.types";
+import type { DonationAmount } from "../types";
 
 const PRESET_AMOUNTS: DonationAmount[] = [10, 30, 50];
 

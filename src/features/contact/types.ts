@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { contactSchema } from "../schemas/contact.schema";
+import { contactSchema } from "./schema";
 
 export type ContactFormData = z.infer<typeof contactSchema>;
 

@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { HeroSection } from "@/components/sections/HeroSection";
-import { ManifestoPreviewSection } from "@/components/sections/ManifestoPreviewSection";
-import { VolunteerSection } from "@/components/sections/VolunteerSection";
-import { DonationSection } from "@/components/sections/DonationSection";
+
+import { HomePageContent } from "@/features/home";
 
 export const metadata: Metadata = {
   title: "Hablemos Claro | Inicio",
@@ -11,12 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return (
-    <>
-      <HeroSection />
-      <ManifestoPreviewSection />
-      <VolunteerSection />
-      <DonationSection />
-    </>
-  );
+  return <HomePageContent />;
 }
