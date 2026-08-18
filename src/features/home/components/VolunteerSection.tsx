@@ -9,12 +9,12 @@ export function VolunteerSection() {
       id="voluntariado"
       className="relative overflow-hidden"
       style={{
-        backgroundImage: "url(/img/about/1.jpg)",
+        backgroundImage: "url(/img/about/contact_us_banner.png)",
         backgroundSize: "cover",
         backgroundPosition: "center"
       }}
     >
-      <div className="absolute inset-0 bg-black/80" aria-hidden="true" />
+      <div className="absolute inset-0 bg-black/50" aria-hidden="true" />
 
       <div className="container relative z-10 py-20">
         <div className="grid items-center gap-12 lg:grid-cols-2">
@@ -42,16 +42,29 @@ export function VolunteerSection() {
 
           {/* Texto */}
           <div>
-            <SectionTitle as="h2" align="left">
-              <Highlight>Espacio de voluntarios</Highlight>
+            <SectionTitle as="h2" align="left" className="text-hc-text">
+              <span
+                className="text-hc-yellow"
+                style={{ textShadow: "0 2px 8px rgba(0,0,0,0.55)" }}
+              >
+                Espacio de voluntarios
+              </span>
               <br />
-              Activa tu compromiso
+              <span style={{ textShadow: "0 2px 8px rgba(0,0,0,0.55)" }}>
+                Activa tu compromiso
+              </span>
             </SectionTitle>
-            <p className="mt-6 leading-relaxed text-hc-muted">
+            <p
+              className="mt-6 leading-relaxed text-hc-text"
+              style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}
+            >
               Si quieres realizar activismo por España desde la responsabilidad y el respeto, este
               es tu lugar. Necesitamos personas preparadas para comunicar, organizar y movilizar.
             </p>
-            <p className="mt-4 leading-relaxed text-hc-muted">
+            <p
+              className="mt-4 leading-relaxed text-hc-text"
+              style={{ textShadow: "0 2px 10px rgba(0,0,0,0.5)" }}
+            >
               Puedes participar en equipos de calle, comunicación, producción de contenido y apoyo
               logístico. Tu tiempo y tu voz son claves para impulsar una alternativa firme y
               constructiva.

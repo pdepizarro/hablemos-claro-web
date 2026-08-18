@@ -27,11 +27,11 @@ export function Footer() {
           <div className="lg:col-span-1">
             <Link href="/" aria-label="Hablemos Claro — Inicio">
               <Image
-                src="/img/footer_logo.png"
+                src="/img/components/logo_hablemos_claro.png"
                 alt="Hablemos Claro"
-                width={160}
-                height={48}
-                className="mb-4 h-10 w-auto"
+                width={480}
+                height={144}
+                className="mb-4 h-[7.5rem] w-auto"
               />
             </Link>
             <p className="mb-6 text-sm leading-relaxed text-hc-muted">

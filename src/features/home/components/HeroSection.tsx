@@ -18,22 +18,18 @@ export function HeroSection() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(90deg, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.42) 100%)"
+            "linear-gradient(90deg, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.38) 100%)"
         }}
         aria-hidden="true"
       />
 
       <div className="container relative z-10">
         <div className="max-w-2xl">
-          <span className="mb-4 inline-block text-sm font-semibold uppercase tracking-widest text-hc-yellow">
-            Hablemos Claro
-          </span>
           <h1 className="font-heading text-4xl font-bold leading-tight text-hc-text sm:text-5xl lg:text-6xl">
-            Hablamos de una sociedad más unida, libre y fuerte
+            Movilización civil por la verdad, la justicia y la libertad en España
           </h1>
           <p className="mt-6 text-lg leading-relaxed text-hc-muted">
-            Desarrollamos el pensamiento crítico de la sociedad construyendo y reconstruyendo los
-            valores que nos hacen fuertes y libres como nación.
+            Desarrollamos el pensamiento crítico frente a la manipulación mediática, la desinformación y la censura. <br />Promovemos la participación ciudadana y la acción colectiva por la lucha de los valores fundamentales del pueblo español.
           </p>
           <div className="mt-8">
             <Button href={routes.about} size="lg">
