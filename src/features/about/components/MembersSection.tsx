@@ -24,11 +24,11 @@ export function MembersSection() {
           </SectionTitle>
         </div>
 
-        <ul className="flex flex-wrap justify-center gap-8">
+        <ul className="flex flex-nowrap gap-5 overflow-x-auto px-1 pb-2 sm:flex-wrap sm:justify-center sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0">
           {members.map(({ name, role, imageSrc }) => (
             <li
               key={name}
-              className="group relative w-full overflow-hidden rounded-hc-lg sm:w-[calc(50%-1rem)] lg:w-[calc(33.33%-1.5rem)]"
+              className="group relative w-[85%] shrink-0 overflow-hidden rounded-hc-lg sm:w-[calc(50%-1rem)] sm:shrink lg:w-[calc(33.33%-1.5rem)]"
             >
               <div className="relative aspect-square w-full">
                 <Image

@@ -28,7 +28,6 @@ export function AboutPageContent() {
               style={{
                 background:
                   "linear-gradient(165deg, rgba(9,9,9,0.97) 0%, rgba(22,22,22,0.95) 50%, rgba(200,16,46,0.08) 100%)",
-                borderLeft: "5px solid #F1BF00",
                 boxShadow: "0 24px 60px rgba(0, 0, 0, 0.55), inset 0 0 0 1px rgba(255,196,0,0.12)"
               }}
             >
@@ -39,9 +38,9 @@ export function AboutPageContent() {
                 </h1>
               </div>
 
-              <div className="space-y-6 text-hc-muted">
+              <div className="space-y-6 text-justify text-hc-muted">
                 <p
-                  className="border-l-4 border-hc-yellow/70 pl-4 text-lg leading-relaxed"
+                  className="text-lg leading-relaxed"
                   style={{ color: "#FFF7CF" }}
                 >
                   Hablemos Claro nace para despertar el sentido crítico de la población de España,
@@ -49,14 +48,14 @@ export function AboutPageContent() {
                   y bienestar en un ejercicio de nuestro derecho de libertad de expresión.
                 </p>
 
-                <p className="border-l border-white/15 pl-4 leading-relaxed">
+                <p className="leading-relaxed">
                   Las cuestiones que deben ser abordadas son inevitablemente incómodas para una
                   sociedad polarizada a beneficio de intereses políticos. Es necesario encontrar
                   vías comunicativas por las cuales discutamos, a todos los niveles, las decisiones
                   colectivas y sus consecuencias reales.
                 </p>
 
-                <p className="border-l border-white/15 pl-4 leading-relaxed">
+                <p className="leading-relaxed">
                   Frente a la observación de múltiples evidencias que reflejan el malestar de la
                   España actual, debemos aceptar que, ya sea por aquello que promovemos por
                   convicción, por aquello que impedimos con nuestra oposición o, sobre todo, por
@@ -65,14 +64,14 @@ export function AboutPageContent() {
                   nuestra vida como en el futuro de nuestra nación.
                 </p>
 
-                <p className="border-l border-white/15 pl-4 leading-relaxed">
+                <p className="leading-relaxed">
                   Tenemos, por tanto, el deber de verificar que nuestras convicciones se basen en
                   la razón, que aquello que rechazamos no obedece a intereses ajenos que se
                   benefician de nuestro engaño o que nuestra pasividad no suceda en nuestro
                   perjuicio.
                 </p>
 
-                <p className="border-l border-white/15 pl-4 leading-relaxed">
+                <p className="leading-relaxed">
                   La creación y defensa de los espacios de debate que tienen como fin influenciar
                   las decisiones políticas del Gobierno constituirá la prioridad fundamental de
                   Hablemos Claro. Cualquier mecanismo de censura será confrontado frontalmente, y
@@ -100,17 +99,18 @@ export function AboutPageContent() {
 
       <Section>
         <div className="container">
-          <ul className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <ul className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 pb-2 sm:grid sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0 sm:snap-none sm:grid-cols-2 lg:grid-cols-3">
             {pillars.map(({ title, body }) => (
               <li
                 key={title}
-                className="group flex min-h-[320px] flex-col rounded-hc-lg border border-hc-yellow/25 bg-gradient-to-b from-[#101010] via-[#131313] to-[#0A0A0A] p-7 shadow-hc-card transition-all duration-300 hover:-translate-y-1 hover:border-hc-yellow/55 hover:shadow-[0_22px_48px_rgba(0,0,0,0.52)]"
+                className="group flex min-h-[320px] w-[85%] shrink-0 snap-start flex-col rounded-hc-lg border border-hc-yellow/25 bg-gradient-to-b from-[#101010] via-[#131313] to-[#0A0A0A] p-7 shadow-hc-card transition-all duration-300 hover:-translate-y-1 hover:border-hc-yellow/55 hover:shadow-[0_22px_48px_rgba(0,0,0,0.52)] sm:w-auto sm:min-w-0 sm:shrink"
               >
                 <div className="mb-5 h-1.5 w-14 rounded-full bg-gradient-to-r from-hc-yellow via-hc-yellow/80 to-hc-red/85" />
                 <SectionTitle as="h2" align="left" className="mb-4 text-2xl leading-tight">
                   <Highlight>{title}</Highlight>
                 </SectionTitle>
-                <p className="mt-auto text-base leading-relaxed text-hc-muted">{body}</p>
+                <p className="grow text-justify text-base leading-relaxed text-hc-muted">{body}</p>
+                <p className="mt-5 text-xs uppercase tracking-[0.2em] text-hc-yellow/80">Prioridad estratégica</p>
               </li>
             ))}
           </ul>
