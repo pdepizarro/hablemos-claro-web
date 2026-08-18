@@ -17,7 +17,6 @@ export function AboutPageContent() {
               }}
             >
               <div className="mb-8 border-b border-hc-yellow/30 pb-6 text-center">
-                <p className="mb-3 text-xs uppercase tracking-[0.35em] text-hc-muted">Documento fundacional</p>
                 <h1 className="font-heading text-4xl font-bold uppercase tracking-[0.2em] text-hc-yellow sm:text-5xl">
                   Manifiesto
                 </h1>
