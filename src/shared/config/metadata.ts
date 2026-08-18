@@ -10,6 +10,11 @@ export const defaultMetadata: Metadata = {
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
+  icons: {
+    icon: "/img/favicon/favicon_hablemos_claro.png",
+    shortcut: "/img/favicon/favicon_hablemos_claro.png",
+    apple: "/img/favicon/favicon_hablemos_claro.png"
+  },
   robots: {
     index: true,
     follow: true
