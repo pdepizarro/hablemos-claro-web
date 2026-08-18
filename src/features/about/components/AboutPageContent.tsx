@@ -1,21 +1,6 @@
-import { Highlight, Section, SectionTitle } from "@/shared/ui";
+import { Section } from "@/shared/ui";
 
 import { MembersSection } from "./MembersSection";
-
-const pillars = [
-  {
-    title: "Compromiso cívico",
-    body: "Construimos propuestas realistas y medibles para mejorar la vida pública y fortalecer las instituciones."
-  },
-  {
-    title: "Unidad y convivencia",
-    body: "Defendemos una España unida, plural y solidaria, desde el diálogo firme y el respeto entre ciudadanos."
-  },
-  {
-    title: "Acción organizada",
-    body: "Coordinamos socios, voluntarios y colaboradores para convertir ideas en resultados concretos."
-  }
-] as const;
 
 export function AboutPageContent() {
   return (
@@ -91,26 +76,6 @@ export function AboutPageContent() {
               </div>
             </div>
           </div>
-        </div>
-      </Section>
-
-      <Section>
-        <div className="container">
-          <ul className="flex snap-x snap-mandatory gap-5 overflow-x-auto px-1 pb-2 sm:grid sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0 sm:snap-none sm:grid-cols-2 lg:grid-cols-3">
-            {pillars.map(({ title, body }) => (
-              <li
-                key={title}
-                className="group flex min-h-[320px] w-[85%] shrink-0 snap-start flex-col rounded-hc-lg border border-hc-yellow/25 bg-gradient-to-b from-[#101010] via-[#131313] to-[#0A0A0A] p-7 shadow-hc-card transition-all duration-300 hover:-translate-y-1 hover:border-hc-yellow/55 hover:shadow-[0_22px_48px_rgba(0,0,0,0.52)] sm:w-auto sm:min-w-0 sm:shrink"
-              >
-                <div className="mb-5 h-1.5 w-14 rounded-full bg-gradient-to-r from-hc-yellow via-hc-yellow/80 to-hc-red/85" />
-                <SectionTitle as="h2" align="left" className="mb-4 text-2xl leading-tight">
-                  <Highlight>{title}</Highlight>
-                </SectionTitle>
-                <p className="grow text-justify text-base leading-relaxed text-hc-muted">{body}</p>
-                <p className="mt-5 text-xs uppercase tracking-[0.2em] text-hc-yellow/80">Prioridad estratégica</p>
-              </li>
-            ))}
-          </ul>
         </div>
       </Section>
 
