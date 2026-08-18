@@ -84,7 +84,7 @@ export function MobileNav() {
         aria-modal="true"
         aria-label="Menú de navegación"
         aria-hidden={!isOpen}
-        className={`fixed inset-0 z-40 lg:hidden ${
+        className={`fixed inset-x-0 bottom-0 top-16 z-40 lg:hidden ${
           isOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
       >
@@ -98,7 +98,7 @@ export function MobileNav() {
 
         <nav
           ref={menuRef}
-          className={`absolute right-0 top-0 flex h-screen w-80 max-w-[90vw] flex-col overflow-y-auto border-l border-hc-yellow/20 bg-[#060606] px-5 py-6 shadow-2xl transition-transform duration-300 ease-out ${
+          className={`absolute right-0 top-0 flex h-full w-80 max-w-[90vw] flex-col overflow-y-auto border-l border-hc-yellow/20 bg-[#060606] px-5 pb-[calc(1.5rem+env(safe-area-inset-bottom))] pt-6 shadow-2xl transition-transform duration-300 ease-out ${
             isOpen ? "translate-x-0" : "translate-x-full"
           }`}
         >
