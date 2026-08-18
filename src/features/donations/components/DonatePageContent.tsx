@@ -7,11 +7,13 @@ export function DonatePageContent() {
     <Section>
       <div className="container">
         <div className="mx-auto max-w-3xl">
-          <div className="mb-10 text-center">
-            <SectionTitle as="h1">
-              <Highlight>Compra libertad</Highlight>
+          <div className="mb-6 text-center sm:mb-8">
+            <SectionTitle as="h1" className="text-2xl sm:text-3xl lg:text-5xl">
+              <span className="inline-block whitespace-nowrap">
+                <Highlight>Compra libertad</Highlight>
+              </span>
             </SectionTitle>
-            <p className="mt-4 text-hc-muted sm:text-lg">
+            <p className="mx-auto mt-2 max-w-2xl text-sm text-hc-muted sm:mt-3 sm:text-base">
               Elige entre aportación puntual o suscripción mensual para apoyar actividades,
               materiales y organización territorial.
             </p>

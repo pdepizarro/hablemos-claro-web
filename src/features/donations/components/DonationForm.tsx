@@ -31,8 +31,6 @@ export function DonationForm() {
 
   const resolvedAmount = resolveDonationAmount(presetAmount, customAmount);
   const cadenceText = mode === "monthly" ? "al mes" : "ahora";
-  const modeLabel =
-    mode === "monthly" ? "Donación mensual (suscripción)" : "Donación puntual (pago único)";
 
   function handlePresetChange(amount: DonationPresetAmount) {
     setPresetAmount(amount);
@@ -80,7 +78,7 @@ export function DonationForm() {
   }
 
   return (
-    <form aria-label="Formulario de donación" noValidate onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
+    <form aria-label="Formulario de donación" noValidate onSubmit={handleSubmit} className="space-y-6">
       <fieldset>
         <legend className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-hc-muted sm:mb-3 sm:text-sm sm:tracking-[0.2em]">
           Tipo de donación
@@ -173,16 +171,6 @@ export function DonationForm() {
           {errorMessage}
         </p>
       )}
-
-      <div className="rounded-hc-lg border border-hc-yellow/25 bg-hc-yellow/10 p-3 sm:p-4">
-        <p className="text-xs uppercase tracking-[0.14em] text-hc-muted sm:text-sm sm:tracking-[0.18em]">Selección actual</p>
-        <p className="mt-1.5 text-base font-semibold text-hc-text sm:mt-2 sm:text-lg">{modeLabel}</p>
-        <p className="mt-1 text-sm text-hc-yellow sm:text-base">
-          {resolvedAmount !== null
-            ? `Vas a donar ${formatEuro(resolvedAmount)} ${cadenceText}.`
-            : `Selecciona una cantidad para donar ${mode === "monthly" ? "al mes" : "ahora"}.`}
-        </p>
-      </div>
 
       <div>
         <button
