@@ -9,8 +9,13 @@ import { navLinks, ctaLink } from "@/content/navigation";
 
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isClientMounted, setIsClientMounted] = useState(false);
   const pathname = usePathname();
   const menuRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    setIsClientMounted(true);
+  }, []);
 
   // Cerrar al cambiar de ruta
   useEffect(() => {
@@ -104,7 +109,7 @@ export function MobileNav() {
         >
           <ul className="flex flex-col gap-2">
             {navLinks.map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = isClientMounted && pathname === link.href;
               return (
                 <li key={link.href}>
                   <Link

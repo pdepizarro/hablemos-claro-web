@@ -6,18 +6,18 @@ export function DonatePageContent() {
   return (
     <Section>
       <div className="container">
-        <div className="mx-auto max-w-2xl">
+        <div className="mx-auto max-w-3xl">
           <div className="mb-10 text-center">
             <SectionTitle as="h1">
               <Highlight>Compra libertad</Highlight>
             </SectionTitle>
-            <p className="mt-4 text-hc-muted">
-              Tu aportación económica sostiene actividades, materiales y organización territorial.
-              Cada euro contribuye a construir una alternativa firme y constructiva.
+            <p className="mt-4 text-hc-muted sm:text-lg">
+              Elige entre aportación puntual o suscripción mensual para apoyar actividades,
+              materiales y organización territorial.
             </p>
           </div>
 
-          <div className="rounded-hc-lg border border-white/15 bg-white/5 p-8 shadow-hc-card">
+          <div className="rounded-hc-lg border border-white/15 bg-white/5 p-5 shadow-hc-card sm:p-8">
             <DonationForm />
           </div>
         </div>

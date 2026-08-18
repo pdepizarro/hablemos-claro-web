@@ -1,22 +1,31 @@
-/**
- * Tipos para la funcionalidad de donaciones.
- *
- * La integración con Stripe se documentará en docs/architecture.md.
- * Cuando esté disponible, añadir aquí los tipos de respuesta de Stripe.
- */
+export const DONATION_PRESET_AMOUNTS = [5, 10, 20, 50, 100] as const;
 
-export type DonationAmount = 10 | 30 | 50;
+export type DonationPresetAmount = (typeof DONATION_PRESET_AMOUNTS)[number];
 
-export type DonationFormData = {
-  /** Importe en euros. Null cuando el usuario selecciona "Otro". */
-  presetAmount: DonationAmount | null;
-  /** Importe personalizado introducido por el usuario. */
-  customAmount: number | null;
+export type DonationMode = "one_time" | "monthly";
+
+export type DonationCheckoutRequest = {
+  mode: DonationMode;
+  amount: number;
 };
 
-/** Importe final resuelto en euros. */
-export function resolveAmount(data: DonationFormData): number | null {
-  if (data.presetAmount !== null) return data.presetAmount;
-  if (data.customAmount !== null && data.customAmount > 0) return data.customAmount;
-  return null;
+export type DonationCheckoutResponse = {
+  success: boolean;
+  checkoutUrl?: string;
+  error?: string;
+};
+
+export function resolveDonationAmount(
+  presetAmount: DonationPresetAmount | null,
+  customAmount: string
+): number | null {
+  if (presetAmount !== null) return presetAmount;
+
+  const normalized = customAmount.replace(",", ".").trim();
+  if (!normalized) return null;
+
+  const parsed = Number(normalized);
+  if (!Number.isFinite(parsed) || parsed <= 0) return null;
+
+  return Math.round(parsed * 100) / 100;
 }

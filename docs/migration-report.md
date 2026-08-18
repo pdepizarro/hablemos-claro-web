@@ -160,7 +160,7 @@ Destino: Next.js 15 App Router + React 19 + TypeScript 5 + Tailwind CSS 3
 Ordenadas por prioridad:
 
 1. **Instalar dependencias**: `npm install` (requiere Node.js ≥ 20).
-2. **Configurar variables de entorno**: crear `.env.local` desde `.env.example` con Resend API Key y correo destino real.
+2. **Configurar variables de entorno**: crear `.env.local` con Resend API Key y correo destino real.
 3. **Verificar imagen de hero**: confirmar que `/img/banner/banner.png` es la imagen definitiva o sustituirla.
 4. **Conectar redes sociales**: actualizar `href` en `src/content/social-links.ts`.
 5. **Integrar Stripe**: crear `/api/donations/create-intent/route.ts` y activar el botón en `DonationForm`.

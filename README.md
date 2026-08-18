@@ -32,8 +32,7 @@ npm install
 .\scripts\migrate-assets.ps1
 
 # 3. Configurar variables de entorno
-cp .env.example .env.local
-# Editar .env.local con los valores reales
+# Crear .env.local en la raíz del proyecto y añadir los valores reales
 ```
 
 ## Desarrollo local
@@ -51,6 +50,10 @@ Abre [http://localhost:3000](http://localhost:3000).
 | `RESEND_API_KEY` | API Key de [Resend](https://resend.com) para envío de correo | Sí |
 | `CONTACT_EMAIL_TO` | Correo destinatario del formulario de contacto | Sí |
 | `RESEND_FROM_EMAIL` | Correo remitente verificado en Resend | Sí |
+| `STRIPE_SECRET_KEY` | Clave secreta de Stripe para crear sesiones de Checkout | Sí |
+| `STRIPE_WEBHOOK_SECRET` | Firma de webhook de Stripe para validar eventos entrantes | Sí |
+| `STRIPE_PORTAL_RETURN_URL` | URL de retorno al salir del Customer Portal de Stripe | No |
+| `DONATIONS_DB_PATH` | Ruta del archivo SQLite para registrar donaciones y eventos de suscripción | No |
 | `NEXT_PUBLIC_SITE_URL` | URL pública del sitio sin barra final | Sí |
 
 En desarrollo sin `RESEND_API_KEY`, los mensajes del formulario se registran en consola en lugar de enviarse.
@@ -77,6 +80,9 @@ src/
     contact/page.tsx      # Contacto (/contact)
     donate/page.tsx       # Compra libertad (/donate)
     api/contact/route.ts  # API de envío de correo
+    api/donations/checkout/route.ts # API Stripe para donación puntual/suscripción mensual
+    api/donations/customer-portal/route.ts # API para abrir el Customer Portal de Stripe
+    api/webhooks/stripe/route.ts # Webhook Stripe para pagos y suscripciones
     sitemap.ts            # Sitemap automático
     robots.ts             # robots.txt
   components/
