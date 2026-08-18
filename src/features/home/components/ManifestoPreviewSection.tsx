@@ -12,7 +12,7 @@ export function ManifestoPreviewSection() {
   return (
     <Section id="manifiesto">
       <div className="container">
-        <div className="mb-14 text-center">
+        <div className="mb-8 text-center">
           <SectionTitle>
             <Highlight>¿Cómo lo hacemos?</Highlight>
           </SectionTitle>
@@ -31,7 +31,7 @@ export function ManifestoPreviewSection() {
                 />
               </div>
               <div className="absolute bottom-0 left-1/2 z-10 w-[90%] -translate-x-1/2 translate-y-1/2 rounded-lg bg-white/95 px-2 py-1 shadow-md sm:px-4 sm:py-2">
-                <span className="block text-center font-heading text-[0.7rem] font-bold leading-tight text-black sm:text-xl lg:text-2xl">
+                <span className="block text-center font-heading text-[0.5rem] font-bold leading-tight text-black sm:text-xl lg:text-2xl">
                   {label}
                 </span>
               </div>
