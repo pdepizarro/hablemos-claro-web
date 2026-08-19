@@ -12,8 +12,8 @@ type Member = {
 };
 
 const members: Member[] = [
-  { name: "Pedro Pizarro", role: "Presidente", imageSrc: "/img/volenteer/1.png" },
-  { name: "Noelia Barrero", role: "Secretaria", imageSrc: "/img/volenteer/2.png" },
+  { name: "Pedro Pizarro", role: "Presidente y fundador", imageSrc: "/img/volenteer/1.png" },
+  { name: "Noelia Barrero", role: "Fundadora", imageSrc: "/img/volenteer/2.png" },
 ];
 
 /**
@@ -116,7 +116,7 @@ export function MembersSection() {
       <div className="container">
         <div className="mb-14 text-center">
           <SectionTitle>
-            <Highlight>Socios principales</Highlight>
+            <Highlight>Junta Directiva</Highlight>
           </SectionTitle>
         </div>
 

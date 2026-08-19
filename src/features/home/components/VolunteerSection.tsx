@@ -51,7 +51,7 @@ export function VolunteerSection() {
               </span>
               <br />
               <span style={{ textShadow: "0 2px 8px rgba(0,0,0,0.55)" }}>
-                Activa tu compromiso
+                Comprométete
               </span>
             </SectionTitle>
             <p

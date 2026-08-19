@@ -54,7 +54,7 @@ export function Header() {
       </div>
 
       {/* Barra de navegación principal */}
-      <div className="container flex h-16 items-center justify-between">
+      <div className="container flex h-20 items-center justify-between">
         {/* Logo */}
         <Link
           href="/"

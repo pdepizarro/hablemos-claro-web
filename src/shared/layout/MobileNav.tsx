@@ -89,7 +89,7 @@ export function MobileNav() {
         aria-modal="true"
         aria-label="Menú de navegación"
         aria-hidden={!isOpen}
-        className={`fixed inset-x-0 bottom-0 top-16 z-40 lg:hidden ${
+        className={`fixed inset-x-0 bottom-0 top-24 z-40 lg:hidden ${
           isOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
       >
