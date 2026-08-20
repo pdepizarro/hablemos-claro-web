@@ -39,7 +39,8 @@ export function CalendarSubscribeButton({ cid, label }: CalendarSubscribeButtonP
     if (isAndroidDevice()) {
       const androidIntent =
         `intent://calendar.google.com/calendar/u/0/r?cid=${encodedCid}` +
-        "#Intent;scheme=https;package=com.google.android.calendar;end";
+        `#Intent;scheme=https;action=android.intent.action.VIEW;` +
+        `S.browser_fallback_url=${encodeURIComponent(webUrl)};end`;
       window.location.href = androidIntent;
       return;
     }
@@ -67,4 +68,3 @@ export function CalendarSubscribeButton({ cid, label }: CalendarSubscribeButtonP
     </button>
   );
 }
-
