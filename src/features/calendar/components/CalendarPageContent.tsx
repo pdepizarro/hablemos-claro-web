@@ -1,5 +1,5 @@
-import Image from "next/image";
-import { Highlight, Section, SectionTitle, Button } from "@/shared/ui";
+import { Highlight, Section, SectionTitle } from "@/shared/ui";
+import { CalendarSubscribeButton } from "./CalendarSubscribeButton";
 import { EmailNotificationHelpDialog } from "./EmailNotificationHelpDialog";
 
 const manifestacionesCalendarId =
@@ -31,9 +31,6 @@ embedParams.append("color", "#AA151B");
 embedParams.append("color", "#F1BF00");
 
 const calendarEmbedUrl = `https://calendar.google.com/calendar/embed?${embedParams.toString()}`;
-const manifestacionesSubscribeUrl = `https://calendar.google.com/calendar/u/0/r?cid=${manifestacionesCalendarCid}`;
-const hablemosClaroSubscribeUrl = `https://calendar.google.com/calendar/u/0/r?cid=${hablemosClaroCalendarCid}`;
-
 export function CalendarPageContent() {
   return (
     <Section>
@@ -67,47 +64,22 @@ export function CalendarPageContent() {
 
           <div className="rounded-hc-lg border border-white/10 bg-white/[0.03] p-6 sm:p-8">
             <div className="flex flex-col items-center gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
-              <Button
-                href={manifestacionesSubscribeUrl}
-                external
-                size="lg"
-                className="text-center shadow-hc-card ring-1 ring-hc-yellow/35"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <Image
-                    src="/img/icons/google_calendar.svg"
-                    alt=""
-                    width={22}
-                    height={22}
-                    className="h-[22px] w-[22px]"
-                    aria-hidden
-                  />
-                  Añadir calendario de manifestaciones
-                </span>
-              </Button>
-
-              <Button
-                href={hablemosClaroSubscribeUrl}
-                external
-                size="lg"
-                className="text-center shadow-hc-card ring-1 ring-hc-yellow/35"
-              >
-                <span className="inline-flex items-center gap-2">
-                  <Image
-                    src="/img/icons/google_calendar.svg"
-                    alt=""
-                    width={22}
-                    height={22}
-                    className="h-[22px] w-[22px]"
-                    aria-hidden
-                  />
-                  Añadir calendario de Hablemos Claro
-                </span>
-              </Button>
+              <CalendarSubscribeButton
+                cid={manifestacionesCalendarCid}
+                label="Añadir calendario de manifestaciones"
+              />
+              <CalendarSubscribeButton
+                cid={hablemosClaroCalendarCid}
+                label="Añadir calendario de Hablemos Claro"
+              />
             </div>
             <div className="mt-3 flex justify-center">
               <EmailNotificationHelpDialog associationName="Hablemos Claro" />
             </div>
+            <p className="mt-2 text-center text-xs text-hc-muted">
+              En móvil intentaremos abrir Google Calendar en la app. Si no está instalada, se abrirá
+              la versión web.
+            </p>
 
             <p className="mt-4 text-sm text-hc-muted">
               Te suscribirás con permisos de <strong className="text-hc-text">solo lectura</strong>:
