@@ -8,6 +8,7 @@ export type NavLink = {
 export const navLinks: NavLink[] = [
   { label: "Inicio", href: routes.home },
   { label: "Quiénes somos", href: routes.about },
+  { label: "Calendario", href: routes.calendar },
   { label: "Contacto", href: routes.contact }
 ];
 

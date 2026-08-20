@@ -3,6 +3,11 @@ declare namespace NodeJS {
     NODE_ENV: "development" | "test" | "production";
 
     NEXT_PUBLIC_SITE_URL?: string;
+    NEXT_PUBLIC_GOOGLE_CALENDAR_ID?: string;
+    NEXT_PUBLIC_GOOGLE_CALENDAR_CID?: string;
+    NEXT_PUBLIC_GOOGLE_CALENDAR_2_ID?: string;
+    NEXT_PUBLIC_GOOGLE_CALENDAR_2_CID?: string;
+    NEXT_PUBLIC_GOOGLE_CALENDAR_ICS_URL?: string;
 
     RESEND_API_KEY?: string;
     RESEND_FROM_EMAIL?: string;

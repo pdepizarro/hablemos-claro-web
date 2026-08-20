@@ -48,8 +48,10 @@ Abre [http://localhost:3000](http://localhost:3000).
 | Variable | Descripción | Obligatoria en prod |
 |---|---|---|
 | `RESEND_API_KEY` | API Key de [Resend](https://resend.com) para envío de correo | Sí |
-| `CONTACT_EMAIL_TO` | Correo destinatario del formulario de contacto | Sí |
 | `RESEND_FROM_EMAIL` | Correo remitente verificado en Resend | Sí |
+| `NEXT_PUBLIC_GOOGLE_CALENDAR_ID` | ID del calendario público de Google a embeber (ej: `asociacionhablemosclaro@gmail.com`) | No |
+| `NEXT_PUBLIC_GOOGLE_CALENDAR_CID` | `cid` público de Google Calendar para el enlace “Suscribirme” | No |
+| `NEXT_PUBLIC_GOOGLE_CALENDAR_ICS_URL` | URL iCal (`.ics`) pública del calendario para suscripción en modo solo lectura | No |
 | `STRIPE_SECRET_KEY` | Clave secreta de Stripe para crear sesiones de Checkout | Sí |
 | `STRIPE_WEBHOOK_SECRET` | Firma de webhook de Stripe para validar eventos entrantes | Sí |
 | `STRIPE_PORTAL_RETURN_URL` | URL de retorno al salir del Customer Portal de Stripe | No |
@@ -77,6 +79,7 @@ src/
     layout.tsx            # Layout raíz (Header + Footer + meta globales)
     page.tsx              # Página de inicio (/)
     about/page.tsx        # Quiénes somos (/about)
+    calendario/page.tsx   # Calendario y agenda de eventos (/calendario)
     contact/page.tsx      # Contacto (/contact)
     donate/page.tsx       # Compra libertad (/donate)
     api/contact/route.ts  # API de envío de correo

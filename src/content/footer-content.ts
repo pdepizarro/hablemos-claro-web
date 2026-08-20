@@ -11,6 +11,7 @@ export const footerColumns: FooterColumn[] = [
     items: [
       { label: "Inicio", href: routes.home },
       { label: "Quiénes somos", href: routes.about },
+      { label: "Calendario", href: routes.calendar },
       { label: "Contacto", href: routes.contact },
       { label: "Compra libertad", href: routes.donate }
     ]
