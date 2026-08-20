@@ -19,6 +19,6 @@ export const footerColumns: FooterColumn[] = [
 ];
 
 export const footerDescription =
-  "Defendemos libertad, unidad y participación cívica con acciones concretas en toda España.";
+  "Defendemos la libertad de expresión, la ejercemos y coordinamos la movilización civil en toda España";
 
 export const copyrightOwner = "Asociación Hablemos Claro";

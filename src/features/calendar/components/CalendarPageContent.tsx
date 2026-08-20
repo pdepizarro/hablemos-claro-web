@@ -38,7 +38,7 @@ export function CalendarPageContent() {
         <div className="mx-auto max-w-6xl space-y-8">
           <div className="text-center">
             <SectionTitle as="h1">
-              <Highlight>Calendario</Highlight> de actividades
+              <Highlight>Calendario</Highlight>
             </SectionTitle>
           </div>
 
@@ -76,10 +76,6 @@ export function CalendarPageContent() {
             <div className="mt-3 flex justify-center">
               <EmailNotificationHelpDialog associationName="Hablemos Claro" />
             </div>
-            <p className="mt-2 text-center text-xs text-hc-muted">
-              En móvil intentaremos abrir Google Calendar en la app. Si no está instalada, se abrirá
-              la versión web.
-            </p>
 
             <p className="mt-4 text-sm text-hc-muted">
               Te suscribirás con permisos de <strong className="text-hc-text">solo lectura</strong>:
