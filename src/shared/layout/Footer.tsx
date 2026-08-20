@@ -1,20 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Youtube, Twitter, Instagram, Music } from "lucide-react";
 
 import {
   footerColumns,
   footerDescription,
   copyrightOwner
 } from "@/content/footer-content";
-import { socialLinks, contactEmail, contactPhone } from "@/content/social-links";
+import { socialLinks, contactEmail } from "@/content/social-links";
 
-const socialIcons = {
-  youtube: Youtube,
-  twitter: Twitter,
-  instagram: Instagram,
-  tiktok: Music
-} as const;
+const socialLogos: Record<string, string> = {
+  youtube: "/img/logos/youtube_logo.png",
+  twitter: "/img/logos/x_logo.png",
+  instagram: "/img/logos/instagram_logo.png",
+  tiktok: "/img/logos/tiktok_logo.png"
+};
 
 export function Footer() {
   const year = new Date().getFullYear();
@@ -38,21 +37,24 @@ export function Footer() {
               Asociación Hablemos Claro. <br />
               {footerDescription}
             </p>
-            <div className="flex gap-4" aria-label="Redes sociales">
-              {socialLinks.map((s) => {
-                const Icon = socialIcons[s.platform];
-                return (
-                  <a
-                    key={s.platform}
-                    href={s.href}
-                    aria-label={s.label}
-                    className="text-hc-muted transition-colors hover:text-hc-yellow focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-hc-yellow"
-                    {...(s.href !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                  >
-                    <Icon size={18} aria-hidden="true" />
-                  </a>
-                );
-              })}
+            <div className="flex items-center gap-4" aria-label="Redes sociales">
+              {socialLinks.map((s) => (
+                <a
+                  key={s.platform}
+                  href={s.href}
+                  aria-label={s.label}
+                  className="opacity-60 transition-opacity hover:opacity-100 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-hc-yellow"
+                  {...(s.href !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                >
+                  <Image
+                    src={socialLogos[s.platform]}
+                    alt={s.label}
+                    width={24}
+                    height={24}
+                    className="h-6 w-6 object-contain"
+                  />
+                </a>
+              ))}
             </div>
           </div>
 
@@ -82,10 +84,6 @@ export function Footer() {
             <h3 className="mb-4 font-heading text-base font-bold text-hc-text">Contacto</h3>
             <address className="not-italic">
               <p className="text-sm leading-relaxed text-hc-muted">
-                <a href={`tel:${contactPhone.replace(/\s/g, "")}`} className="hover:text-hc-yellow">
-                  {contactPhone}
-                </a>
-                <br />
                 <a href={`mailto:${contactEmail}`} className="hover:text-hc-yellow">
                   {contactEmail}
                 </a>
@@ -99,32 +97,29 @@ export function Footer() {
           <div>
             <h3 className="mb-4 font-heading text-base font-bold text-hc-text">Redes</h3>
             <ul className="flex flex-col gap-4 text-sm text-hc-muted">
-              <li className="flex items-center gap-3">
-                <Image
-                  src="/img/news/news_1.png"
-                  alt=""
-                  width={48}
-                  height={48}
-                  className="h-12 w-12 rounded object-cover"
-                />
-                <div>
-                  <p className="font-semibold text-hc-text">YouTube</p>
-                  <span>Próximamente</span>
-                </div>
-              </li>
-              <li className="flex items-center gap-3">
-                <Image
-                  src="/img/news/news_2.png"
-                  alt=""
-                  width={48}
-                  height={48}
-                  className="h-12 w-12 rounded object-cover"
-                />
-                <div>
-                  <p className="font-semibold text-hc-text">Instagram / TikTok</p>
-                  <span>Próximamente</span>
-                </div>
-              </li>
+              {socialLinks.map((s) => (
+                <li key={s.platform}>
+                  <a
+                    href={s.href}
+                    aria-label={s.label}
+                    className="flex items-center gap-3 transition-opacity hover:opacity-80"
+                    {...(s.href !== "#" ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                  >
+                    <Image
+                      src={socialLogos[s.platform]}
+                      alt=""
+                      width={36}
+                      height={36}
+                      className="h-9 w-9 object-contain"
+                      aria-hidden
+                    />
+                    <div>
+                      <p className="font-semibold text-hc-text">{s.label}</p>
+                      <span>{s.href === "#" ? "Próximamente" : s.href.replace("https://", "")}</span>
+                    </div>
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

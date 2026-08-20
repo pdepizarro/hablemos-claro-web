@@ -17,5 +17,4 @@ export const socialLinks: SocialLink[] = [
   { label: "TikTok", href: "#", platform: "tiktok" }
 ];
 
-export const contactEmail = "contacto@hablemosclaro.es";
-export const contactPhone = "+34 600 000 000";
+export const contactEmail = "asociacionhablemosclaro@gmail.com";

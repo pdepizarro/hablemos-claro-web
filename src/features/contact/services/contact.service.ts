@@ -1,19 +1,24 @@
 import type { ContactFormData } from "../types";
 
 /**
- * Envía el mensaje de contacto por correo electrónico mediante Resend.
+ * Envía el mensaje de contacto mediante Resend.
  *
- * Para integrar con Resend:
- *   1. Crear cuenta en https://resend.com
- *   2. Añadir dominio hablemosclaro.es y verificarlo
- *   3. Generar una API Key y añadirla en .env.local como RESEND_API_KEY
+ * Pasos para activarlo:
+ *   1. Crea cuenta gratuita en https://resend.com
+ *   2. Ve a API Keys → Create API Key → copia la clave
+ *   3. Añade en .env.local:
+ *        RESEND_API_KEY=re_xxxxxxxxxxxx
+ *   4. Reinicia el servidor
  *
- * En desarrollo sin API Key, el mensaje se registra en consola en lugar de enviarse.
+ * El remitente usa onboarding@resend.dev (disponible sin verificar dominio).
+ * Cuando tengas dominio propio verificado en Resend, cambia RESEND_FROM_EMAIL.
+ *
+ * En desarrollo sin API Key, el mensaje se registra en consola.
  */
 export async function sendContactEmail(data: ContactFormData): Promise<void> {
   const apiKey = process.env["RESEND_API_KEY"];
-  const toEmail = process.env["CONTACT_EMAIL_TO"] ?? "contacto@hablemosclaro.es";
-  const fromEmail = process.env["RESEND_FROM_EMAIL"] ?? "noreply@hablemosclaro.es";
+  const toEmail = "asociacionhablemosclaro@gmail.com";
+  const fromEmail = process.env["RESEND_FROM_EMAIL"] ?? "Hablemos Claro <onboarding@resend.dev>";
 
   if (!apiKey) {
     if (process.env["NODE_ENV"] === "development") {
@@ -24,7 +29,6 @@ export async function sendContactEmail(data: ContactFormData): Promise<void> {
     throw new Error("Servicio de correo no configurado.");
   }
 
-  // Importación dinámica para evitar cargar Resend en el bundle de cliente
   const { Resend } = await import("resend");
   const resend = new Resend(apiKey);
 
@@ -32,7 +36,7 @@ export async function sendContactEmail(data: ContactFormData): Promise<void> {
     from: fromEmail,
     to: toEmail,
     replyTo: data.email,
-    subject: `Hablemos Claro — Contacto: ${data.subject}`,
+    subject: `[HC][${data.name}] — ${data.subject}`,
     html: buildEmailHtml(data)
   });
 
@@ -69,6 +73,10 @@ function buildEmailHtml(data: ContactFormData): string {
       </table>
       <hr style="margin: 16px 0; border-color: #eee;" />
       <p style="line-height: 1.7;">${message}</p>
+      <hr style="margin: 16px 0; border-color: #eee;" />
+      <p style="font-size: 12px; color: #888;">
+        Mensaje enviado desde el formulario de contacto de hablemosclaro.es
+      </p>
     </body>
     </html>
   `;

@@ -58,7 +58,7 @@ export function ContactForm() {
       >
         <p className="text-xl font-semibold text-hc-yellow">¡Mensaje enviado!</p>
         <p className="mt-2 text-hc-muted">
-          Hemos recibido tu mensaje y te responderemos en breve.
+          Hemos recibido tu mensaje.
         </p>
         <button
           type="button"

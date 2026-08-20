@@ -10,11 +10,23 @@ import { navLinks, ctaLink } from "@/content/navigation";
 export function MobileNav() {
   const [isOpen, setIsOpen] = useState(false);
   const [isClientMounted, setIsClientMounted] = useState(false);
+  const [headerHeight, setHeaderHeight] = useState(96);
   const pathname = usePathname();
   const menuRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     setIsClientMounted(true);
+  }, []);
+
+  // Medir la altura real del header y actualizarla si cambia
+  useEffect(() => {
+    const measure = () => {
+      const header = document.querySelector("header");
+      if (header) setHeaderHeight(header.getBoundingClientRect().height);
+    };
+    measure();
+    window.addEventListener("resize", measure);
+    return () => window.removeEventListener("resize", measure);
   }, []);
 
   // Cerrar al cambiar de ruta
@@ -89,9 +101,10 @@ export function MobileNav() {
         aria-modal="true"
         aria-label="Menú de navegación"
         aria-hidden={!isOpen}
-        className={`fixed inset-x-0 bottom-0 top-24 z-40 lg:hidden ${
+        className={`fixed inset-x-0 bottom-0 z-40 lg:hidden ${
           isOpen ? "pointer-events-auto" : "pointer-events-none"
         }`}
+        style={{ top: headerHeight }}
       >
         <div
           className={`absolute inset-0 bg-black/72 transition-opacity duration-300 ${

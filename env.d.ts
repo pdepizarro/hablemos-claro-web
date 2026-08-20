@@ -5,7 +5,6 @@ declare namespace NodeJS {
     NEXT_PUBLIC_SITE_URL?: string;
 
     RESEND_API_KEY?: string;
-    CONTACT_EMAIL_TO?: string;
     RESEND_FROM_EMAIL?: string;
 
     STRIPE_SECRET_KEY?: string;
