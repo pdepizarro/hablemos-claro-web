@@ -7,10 +7,6 @@ type CalendarSubscribeButtonProps = {
   label: string;
 };
 
-function isAndroidDevice(): boolean {
-  return /Android/i.test(navigator.userAgent);
-}
-
 function isMobileDevice(): boolean {
   return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 }
@@ -18,34 +14,16 @@ function isMobileDevice(): boolean {
 export function CalendarSubscribeButton({ cid, label }: CalendarSubscribeButtonProps) {
   const openSubscription = () => {
     const encodedCid = encodeURIComponent(cid);
-    const webUrl = `https://calendar.google.com/calendar/u/0/r?cid=${encodedCid}`;
+    const calendarUrl = `https://calendar.google.com/calendar/u/0?cid=${encodedCid}`;
 
     if (!isMobileDevice()) {
-      window.open(webUrl, "_blank", "noopener,noreferrer");
+      window.open(calendarUrl, "_blank", "noopener,noreferrer");
       return;
     }
 
-    let pageHidden = false;
-    const onVisibilityChange = () => {
-      if (document.visibilityState === "hidden") pageHidden = true;
-    };
-    document.addEventListener("visibilitychange", onVisibilityChange);
-
-    window.setTimeout(() => {
-      document.removeEventListener("visibilitychange", onVisibilityChange);
-      if (!pageHidden) window.location.href = webUrl;
-    }, 900);
-
-    if (isAndroidDevice()) {
-      const androidIntent =
-        `intent://calendar.google.com/calendar/u/0/r?cid=${encodedCid}` +
-        `#Intent;scheme=https;action=android.intent.action.VIEW;` +
-        `S.browser_fallback_url=${encodeURIComponent(webUrl)};end`;
-      window.location.href = androidIntent;
-      return;
-    }
-
-    window.location.href = `googlecalendar://?cid=${encodedCid}`;
+    // Usamos el enlace universal oficial de Google Calendar:
+    // si la app está instalada, el SO puede abrirla; si no, cae a la web.
+    window.location.href = calendarUrl;
   };
 
   return (
