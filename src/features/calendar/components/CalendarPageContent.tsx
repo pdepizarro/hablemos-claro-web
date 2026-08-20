@@ -43,10 +43,6 @@ export function CalendarPageContent() {
             <SectionTitle as="h1">
               <Highlight>Calendario</Highlight> de actividades
             </SectionTitle>
-            <p className="mx-auto mt-4 max-w-3xl leading-relaxed text-hc-muted">
-              Consulta en un solo calendario las manifestaciones y los eventos de Hablemos Claro.
-              Los eventos de manifestaciones se muestran en rojo y los de Hablemos Claro en amarillo.
-            </p>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 text-sm text-hc-muted">
