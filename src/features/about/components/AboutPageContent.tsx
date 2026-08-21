@@ -17,7 +17,7 @@ export function AboutPageContent() {
               }}
             >
               <div className="mb-8 border-b border-hc-yellow/30 pb-6 text-center">
-                <h1 className="font-heading text-4xl font-bold uppercase tracking-[0.2em] text-hc-yellow sm:text-5xl">
+                <h1 className="font-heading text-[1.5rem] font-bold uppercase tracking-[0.2em] text-hc-yellow sm:text-5xl">
                   Manifiesto
                 </h1>
               </div>
