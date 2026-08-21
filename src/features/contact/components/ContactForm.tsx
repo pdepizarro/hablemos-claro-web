@@ -190,14 +190,14 @@ export function ContactForm() {
           aria-label={`Enviar correo a ${contactEmail}`}
         >
           <Mail size={18} aria-hidden="true" />
-          <span className="break-all">{contactEmail}</span>
+          <span>email</span>
         </a>
       </div>
 
       <p className="text-sm leading-relaxed text-hc-muted">
         Correo directo:{" "}
         <a href={`mailto:${contactEmail}`} className="font-semibold text-hc-yellow hover:text-hc-red">
-          {contactEmail}
+          email
         </a>
         . Incluye asunto claro y forma de contacto para que podamos responderte con rapidez.
       </p>

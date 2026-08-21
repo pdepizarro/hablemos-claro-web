@@ -8,7 +8,7 @@ export function DonatePageContent() {
       <div className="container">
         <div className="mx-auto max-w-3xl">
           <div className="mb-6 text-center sm:mb-8">
-            <SectionTitle as="h1" className="text-2xl sm:text-3xl lg:text-5xl">
+            <SectionTitle as="h1" className="text-4xl sm:text-5xl">
               <span className="inline-block whitespace-nowrap">
                 <Highlight>Compra libertad</Highlight>
               </span>
