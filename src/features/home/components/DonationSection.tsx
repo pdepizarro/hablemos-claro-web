@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { routes } from "@/shared/config";
-import { Section } from "@/shared/ui";
+import { Highlight, Section, SectionTitle } from "@/shared/ui";
 
 export function DonationSection() {
   return (
@@ -13,12 +13,15 @@ export function DonationSection() {
 
       <div className="container relative">
         <div className="mx-auto flex max-w-4xl flex-col items-center">
-          <span aria-hidden="true" className="mb-8 h-1 w-24 rounded-full bg-gradient-to-r from-hc-red via-hc-yellow to-hc-red sm:w-32" />
+          <SectionTitle className="max-w-3xl text-balance !text-2xl !leading-snug sm:!text-3xl lg:!text-4xl">
+            Agradecemos <Highlight>toda ayuda</Highlight> para hacer crecer el proyecto y llevar el debate político a{" "}
+            <Highlight>toda España</Highlight>
+          </SectionTitle>
 
           <Link
             href={routes.donate}
             aria-label="Compra libertad"
-            className="group relative flex w-full items-center justify-center gap-3 rounded-hc-lg border-2 border-hc-yellow bg-hc-yellow whitespace-nowrap px-4 py-6 font-heading text-[1.65rem] font-bold text-black shadow-[0_0_60px_rgba(241,191,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-hc-red hover:bg-hc-red hover:text-white hover:shadow-[0_0_70px_rgba(170,21,27,0.55)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-hc-yellow focus-visible:ring-offset-4 focus-visible:ring-offset-black sm:w-auto sm:gap-4 sm:px-16 sm:py-8 sm:text-5xl lg:px-24 lg:py-10 lg:text-6xl"
+            className="group relative mt-10 flex w-full items-center justify-center gap-3 rounded-hc-lg border-2 border-hc-yellow bg-hc-yellow whitespace-nowrap px-4 py-6 font-heading text-[1.65rem] font-bold text-black shadow-[0_0_60px_rgba(241,191,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-hc-red hover:bg-hc-red hover:text-white hover:shadow-[0_0_70px_rgba(170,21,27,0.55)] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-hc-yellow focus-visible:ring-offset-4 focus-visible:ring-offset-black sm:w-auto sm:gap-4 sm:px-16 sm:py-8 sm:text-5xl lg:px-24 lg:py-10 lg:text-6xl"
           >
             Compra libertad
             <svg
@@ -34,8 +37,6 @@ export function DonationSection() {
               <path d="M5 12h14M13 6l6 6-6 6" />
             </svg>
           </Link>
-
-          <span aria-hidden="true" className="mt-8 h-1 w-24 rounded-full bg-gradient-to-r from-hc-red via-hc-yellow to-hc-red sm:w-32" />
         </div>
       </div>
     </Section>
