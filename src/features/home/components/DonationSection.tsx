@@ -31,8 +31,8 @@ export function DonationSection() {
           </p>
 
           <div className="mt-6 text-center">
-            <Button href={routes.donate} size="lg" className="w-full sm:w-auto" aria-label="Donar ahora">
-              Donar ahora
+            <Button href={routes.donate} size="lg" className="w-full sm:w-auto" aria-label="Compra libertad">
+              Compra libertad
             </Button>
             <p className="mt-3 text-sm text-hc-muted">
               Pago seguro con Stripe. Puedes cancelar la suscripción cuando quieras.
