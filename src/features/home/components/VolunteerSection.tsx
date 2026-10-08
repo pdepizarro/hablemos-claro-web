@@ -1,8 +1,6 @@
 import { Button, Highlight, SectionTitle } from "@/shared/ui";
 import { routes } from "@/shared/config";
 
-const VIDEO_URL = "https://www.youtube.com/watch?v=MG3jGHnBVQs";
-
 export function VolunteerSection() {
   return (
     <section
@@ -18,14 +16,12 @@ export function VolunteerSection() {
 
       <div className="container relative z-10 py-20">
         <div className="grid items-center gap-12 lg:grid-cols-2">
-          {/* Zona de vídeo */}
-          <div className="flex justify-center">
-            <a
-              href={VIDEO_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Ver vídeo de presentación en YouTube (se abre en nueva pestaña)"
-              className="flex h-24 w-24 items-center justify-center rounded-full border-4 border-hc-yellow bg-black/60 text-hc-yellow transition hover:bg-hc-yellow hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+          {/* Zona de vídeo: aún sin URL, se muestra el reproductor inactivo */}
+          <div className="flex flex-col items-center gap-3">
+            <div
+              role="img"
+              aria-label="Vídeo de presentación: próximamente"
+              className="flex h-24 w-24 cursor-not-allowed items-center justify-center rounded-full border-4 border-hc-yellow/60 bg-black/60 text-hc-yellow/70"
             >
               {/* Icono de reproducción SVG inline (sin dependencia de librería) */}
               <svg
@@ -37,7 +33,8 @@ export function VolunteerSection() {
               >
                 <path d="M8 5v14l11-7z" />
               </svg>
-            </a>
+            </div>
+            <span className="text-sm font-semibold uppercase tracking-[0.2em] text-hc-muted">Próximamente</span>
           </div>
 
           {/* Texto */}
