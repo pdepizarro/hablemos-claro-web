@@ -75,7 +75,7 @@ export function CollaboratorsSection() {
   return (
     <Section id="colaboradores">
       <div className="container">
-        <div className="mb-14 text-center">
+        <div className="mb-4 text-center sm:mb-6">
           <SectionTitle>
             <Highlight>Colaboradores</Highlight>
           </SectionTitle>
@@ -124,10 +124,8 @@ export function CollaboratorsSection() {
                   key={collaborator.name}
                   ref={(el) => { itemRefs.current[idx] = el; }}
                   className={[
-                    "shrink-0 transition-all duration-500 ease-out",
-                    isActive
-                      ? "w-28 sm:w-32 lg:w-36 opacity-100"
-                      : "w-24 sm:w-28 lg:w-32 opacity-60 scale-95"
+                    "w-32 shrink-0 transition-opacity duration-500 ease-out",
+                    isActive ? "opacity-100" : "opacity-60"
                   ].join(" ")}
                 >
                   <a
@@ -145,7 +143,7 @@ export function CollaboratorsSection() {
                         fill
                         draggable={false}
                         className="pointer-events-none object-contain"
-                        sizes="(min-width: 1024px) 144px, (min-width: 640px) 128px, 112px"
+                        sizes="128px"
                       />
                     </div>
                   </a>
