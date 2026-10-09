@@ -115,7 +115,7 @@ export function CollaboratorsSection() {
             style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch", cursor: "grab" } as React.CSSProperties}
           >
             {/* Left spacer */}
-            <li aria-hidden className="shrink-0" style={{ width: "calc(50vw - 6rem)" }} />
+            <li aria-hidden className="shrink-0" style={{ width: "calc(50vw - 5rem)" }} />
 
             {collaborators.map((collaborator, idx) => {
               const isActive = idx === activeIdx;
@@ -126,8 +126,8 @@ export function CollaboratorsSection() {
                   className={[
                     "shrink-0 transition-all duration-500 ease-out",
                     isActive
-                      ? "w-40 sm:w-44 lg:w-48 opacity-100"
-                      : "w-32 sm:w-36 lg:w-40 opacity-60 scale-95"
+                      ? "w-28 sm:w-32 lg:w-36 opacity-100"
+                      : "w-24 sm:w-28 lg:w-32 opacity-60 scale-95"
                   ].join(" ")}
                 >
                   <a
@@ -145,7 +145,7 @@ export function CollaboratorsSection() {
                         fill
                         draggable={false}
                         className="pointer-events-none object-contain"
-                        sizes="(min-width: 1024px) 192px, (min-width: 640px) 176px, 160px"
+                        sizes="(min-width: 1024px) 144px, (min-width: 640px) 128px, 112px"
                       />
                     </div>
                   </a>
@@ -154,7 +154,7 @@ export function CollaboratorsSection() {
             })}
 
             {/* Right spacer */}
-            <li aria-hidden className="shrink-0" style={{ width: "calc(50vw - 6rem)" }} />
+            <li aria-hidden className="shrink-0" style={{ width: "calc(50vw - 5rem)" }} />
           </ul>
         </div>
 
