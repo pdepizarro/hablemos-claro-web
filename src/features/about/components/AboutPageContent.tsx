@@ -1,5 +1,6 @@
 import { Section } from "@/shared/ui";
 
+import { CollaboratorsSection } from "./CollaboratorsSection";
 import { MembersSection } from "./MembersSection";
 
 export function AboutPageContent() {
@@ -79,6 +80,7 @@ export function AboutPageContent() {
       </Section>
 
       <MembersSection />
+      <CollaboratorsSection />
     </>
   );
 }
