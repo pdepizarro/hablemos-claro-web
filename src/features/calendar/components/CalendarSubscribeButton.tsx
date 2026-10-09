@@ -34,7 +34,7 @@ export function CalendarSubscribeButton({ cid, label }: CalendarSubscribeButtonP
     >
       <span className="inline-flex items-center gap-2">
         <Image
-          src="/img/icons/google_calendar.svg"
+          src="/img/icons/google_calendar.webp"
           alt=""
           width={22}
           height={22}
