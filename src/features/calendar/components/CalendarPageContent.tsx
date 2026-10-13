@@ -1,6 +1,8 @@
 import { Highlight, Section, SectionTitle } from "@/shared/ui";
+import { getCalendarEvents } from "../lib/calendar-events";
 import { CalendarSubscribeButton } from "./CalendarSubscribeButton";
 import { EmailNotificationHelpDialog } from "./EmailNotificationHelpDialog";
+import { EventsCalendar } from "./EventsCalendar";
 
 const manifestacionesCalendarId =
   process.env["NEXT_PUBLIC_GOOGLE_CALENDAR_ID"] ?? "asociacionhablemosclaro@gmail.com";
@@ -15,23 +17,20 @@ const hablemosClaroCalendarCid =
   process.env["NEXT_PUBLIC_GOOGLE_CALENDAR_2_CID"] ??
   "ZTFmNmU1OGFlNTkwNDY5OTI0NTYxMWExNzdiOWQyMGIzZmJlOTBiMmZjYWVjYTViYjk3MTllZmJiOGRhM2JjNkBncm91cC5jYWxlbmRhci5nb29nbGUuY29t";
 
-const embedParams = new URLSearchParams({
-  ctz: "Europe/Madrid",
-  hl: "es",
-  mode: "MONTH",
-  showTitle: "0",
-  showPrint: "0",
-  showTabs: "0",
-  showCalendars: "0",
-  showTz: "0"
+const madridDayFormatter = new Intl.DateTimeFormat("en-CA", {
+  timeZone: "Europe/Madrid",
+  year: "numeric",
+  month: "2-digit",
+  day: "2-digit"
 });
-embedParams.append("src", manifestacionesCalendarId);
-embedParams.append("src", hablemosClaroCalendarId);
-embedParams.append("color", "#AA151B");
-embedParams.append("color", "#F1BF00");
 
-const calendarEmbedUrl = `https://calendar.google.com/calendar/embed?${embedParams.toString()}`;
-export function CalendarPageContent() {
+export async function CalendarPageContent() {
+  const { events, hasError } = await getCalendarEvents([
+    { id: manifestacionesCalendarId, source: "manifestaciones" },
+    { id: hablemosClaroCalendarId, source: "hablemos" }
+  ]);
+  const todayIso = madridDayFormatter.format(new Date());
+
   return (
     <Section>
       <div className="container">
@@ -53,13 +52,8 @@ export function CalendarPageContent() {
             </span>
           </div>
 
-          <div className="overflow-hidden rounded-hc-lg border border-hc-yellow/30 bg-[#080808] shadow-hc-card">
-            <iframe
-              title="Calendario público de la asociación Hablemos Claro"
-              src={calendarEmbedUrl}
-              className="h-[560px] w-full sm:h-[720px]"
-              loading="lazy"
-            />
+          <div className="overflow-hidden rounded-hc-lg border border-hc-yellow/30 bg-white shadow-hc-card">
+            <EventsCalendar events={events} todayIso={todayIso} hasError={hasError} />
           </div>
 
           <div className="rounded-hc-lg border border-white/10 bg-white/[0.03] p-6 sm:p-8">
