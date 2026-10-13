@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Analytics } from "@vercel/analytics/next";
 import { Yeseva_One, Open_Sans } from "next/font/google";
 
 import { defaultMetadata, siteConfig } from "@/shared/config";
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           </main>
           <Footer />
         </div>
+        <Analytics />
       </body>
     </html>
   );
