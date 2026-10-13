@@ -12,7 +12,8 @@ type Member = {
 };
 
 const members: Member[] = [
-  { name: "Pedro Pizarro", role: "Presidente y fundador", imageSrc: "/img/volenteer/1.png" },
+  { name: "Pedro Pizarro", role: "Presidente y fundador", imageSrc: "/img/volenteer/PedroPizarro.png" },
+  { name: "Juan Pedro Huertas", role: "Tesorero", imageSrc: "/img/volenteer/JP.png" },
 ];
 
 /**
