@@ -1,5 +1,6 @@
 "use client";
 
+import { createPortal } from "react-dom";
 import { useEffect, useMemo, useState } from "react";
 
 import type { CalendarEvent, CalendarSource } from "../types";
@@ -59,8 +60,22 @@ function compareInDay(a: CalendarEvent, b: CalendarEvent): number {
   return (a.startTime ?? "").localeCompare(b.startTime ?? "") || a.title.localeCompare(b.title);
 }
 
+function formatEventDate(iso: string): string {
+  return capitalize(
+    new Intl.DateTimeFormat("es-ES", {
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+      timeZone: "UTC"
+    }).format(fromIso(iso))
+  );
+}
+
 export function EventsCalendar({ events, todayIso, hasError }: EventsCalendarProps) {
   const [today, setToday] = useState(todayIso);
+  const [selectedEvents, setSelectedEvents] = useState<CalendarEvent[]>([]);
+  const [expandedDay, setExpandedDay] = useState<string | null>(null);
   const [{ year, month }, setView] = useState(() => {
     const [y, m] = todayIso.split("-").map(Number) as [number, number];
     return { year: y, month: m - 1 };
@@ -70,6 +85,23 @@ export function EventsCalendar({ events, todayIso, hasError }: EventsCalendarPro
   useEffect(() => {
     setToday(madridDayFormatter.format(new Date()));
   }, []);
+
+  useEffect(() => {
+    if (selectedEvents.length === 0) return;
+
+    const previousOverflow = document.body.style.overflow;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setSelectedEvents([]);
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [selectedEvents]);
 
   const monthStart = toIso(new Date(Date.UTC(year, month, 1)));
   const monthEnd = toIso(new Date(Date.UTC(year, month + 1, 0)));
@@ -148,7 +180,8 @@ export function EventsCalendar({ events, todayIso, hasError }: EventsCalendarPro
           const dayEvents = eventsByDay.get(iso) ?? [];
           const inMonth = iso >= monthStart && iso <= monthEnd;
           const isToday = iso === today;
-          const visible = dayEvents.slice(0, MAX_CHIPS);
+          const isExpanded = expandedDay === iso;
+          const visible = isExpanded ? dayEvents : dayEvents.slice(0, MAX_CHIPS);
           const hidden = dayEvents.length - visible.length;
 
           return (
@@ -160,14 +193,31 @@ export function EventsCalendar({ events, todayIso, hasError }: EventsCalendarPro
               ].join(" ")}
             >
               <div className="flex justify-center sm:justify-start">
-                <span
-                  className={[
-                    "flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold sm:h-7 sm:w-7 sm:text-sm",
-                    isToday ? "bg-black text-white" : ""
-                  ].join(" ")}
-                >
-                  {Number(iso.slice(8))}
-                </span>
+                {dayEvents.length > 0 ? (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedEvents(dayEvents)}
+                    aria-label={`Ver ${dayEvents.length} ${
+                      dayEvents.length === 1 ? "evento" : "eventos"
+                    } del ${formatEventDate(iso)}`}
+                    className={[
+                      "flex h-6 min-w-6 items-center justify-center rounded-full px-1 text-xs font-semibold sm:h-7 sm:min-w-7 sm:text-sm",
+                      isToday ? "bg-black text-white" : "hover:bg-black/10",
+                      "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow"
+                    ].join(" ")}
+                  >
+                    {Number(iso.slice(8))}
+                  </button>
+                ) : (
+                  <span
+                    className={[
+                      "flex h-6 w-6 items-center justify-center rounded-full text-xs font-semibold sm:h-7 sm:w-7 sm:text-sm",
+                      isToday ? "bg-black text-white" : ""
+                    ].join(" ")}
+                  >
+                    {Number(iso.slice(8))}
+                  </span>
+                )}
               </div>
 
               {dayEvents.length > 0 && (
@@ -178,21 +228,39 @@ export function EventsCalendar({ events, todayIso, hasError }: EventsCalendarPro
 
                   <div className="mt-1 hidden flex-col gap-1 sm:flex">
                     {visible.map((event) => (
-                      <div
+                      <button
+                        type="button"
                         key={`${event.id}-${iso}`}
-                        title={`${event.title}${event.location ? ` — ${event.location}` : ""}`}
-                        className={`line-clamp-2 break-words rounded px-1.5 py-0.5 text-xs font-semibold leading-tight ${chipStyles[event.source]}`}
+                        onClick={() => setSelectedEvents([event])}
+                        aria-label={`Ver detalles: ${event.title}`}
+                        className={`line-clamp-2 break-words rounded px-1.5 py-0.5 text-left text-xs font-semibold leading-tight focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black ${chipStyles[event.source]}`}
                       >
                         {event.startTime && iso === event.startDate ? `${event.startTime} ` : ""}
                         {event.title}
-                      </div>
+                      </button>
                     ))}
-                    {hidden > 0 && <span className="px-1 text-xs font-semibold text-black/60">+{hidden} más</span>}
+                    {hidden > 0 && (
+                      <button
+                        type="button"
+                        onClick={() => setExpandedDay(iso)}
+                        className="px-1 text-left text-xs font-semibold text-black/60 hover:text-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow"
+                        aria-label={`Mostrar ${hidden} eventos más`}
+                      >
+                        +{hidden} más
+                      </button>
+                    )}
                   </div>
 
-                  <div className="mt-1 flex flex-wrap justify-center gap-0.5 sm:hidden" aria-hidden>
+                  <div className="mt-1 flex flex-wrap justify-center gap-1 sm:hidden">
                     {dayEvents.map((event) => (
-                      <span key={`${event.id}-${iso}`} className={`h-2 w-2 rounded-full ${dotStyles[event.source]}`} />
+                      <button
+                        type="button"
+                        key={`${event.id}-${iso}`}
+                        onClick={() => setSelectedEvents([event])}
+                        aria-label={`Ver detalles: ${event.title}`}
+                        title={event.title}
+                        className={`h-2.5 w-2.5 rounded-full ${dotStyles[event.source]} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2`}
+                      />
                     ))}
                   </div>
                 </>
@@ -207,6 +275,103 @@ export function EventsCalendar({ events, todayIso, hasError }: EventsCalendarPro
           No hemos podido cargar todos los calendarios. Inténtalo de nuevo en unos minutos.
         </p>
       )}
+
+      {selectedEvents.length > 0 && typeof document !== "undefined"
+        ? createPortal(
+            <div
+              className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4"
+              onClick={() => setSelectedEvents([])}
+            >
+              <section
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="calendar-events-title"
+                className="relative my-auto max-h-[min(90vh,48rem)] w-full max-w-xl overflow-y-auto rounded-hc-lg border border-hc-yellow/30 bg-[#0a0a0a] p-5 text-hc-text shadow-hc-card sm:p-7"
+                onClick={(event) => event.stopPropagation()}
+              >
+                <button
+                  type="button"
+                  onClick={() => setSelectedEvents([])}
+                  className="absolute right-3 top-3 rounded px-2 py-1 text-hc-muted transition-colors hover:text-hc-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow"
+                  aria-label="Cerrar detalles de eventos"
+                >
+                  ✕
+                </button>
+
+                <h3
+                  id="calendar-events-title"
+                  className="mt-4 pr-8 font-heading text-2xl font-bold text-hc-yellow sm:text-3xl"
+                >
+                  {selectedEvents.length === 1 ? "Detalle del evento" : "Eventos del día"}
+                </h3>
+
+                <div className="mt-5 space-y-5">
+                  {selectedEvents.map((selectedEvent) => (
+                    <article
+                      key={selectedEvent.id}
+                      className="rounded-hc-lg border border-white/10 bg-white/[0.03] p-4 sm:p-5"
+                    >
+                      <span
+                        className={`inline-flex rounded-full px-3 py-1 text-xs font-semibold ${chipStyles[selectedEvent.source]}`}
+                      >
+                        {selectedEvent.source === "hablemos" ? "Hablemos Claro" : "Manifestación"}
+                      </span>
+                      <h4 className="mt-3 font-heading text-xl font-bold text-hc-text">
+                        {selectedEvent.title}
+                      </h4>
+
+                      <dl className="mt-4 space-y-3 text-sm sm:text-base">
+                        <div>
+                          <dt className="font-semibold text-hc-text">Fecha</dt>
+                          <dd className="mt-1 text-hc-muted">
+                            {formatEventDate(selectedEvent.startDate)}
+                            {selectedEvent.endDate !== selectedEvent.startDate &&
+                              ` – ${formatEventDate(selectedEvent.endDate)}`}
+                          </dd>
+                        </div>
+                        {selectedEvent.startTime && (
+                          <div>
+                            <dt className="font-semibold text-hc-text">Hora</dt>
+                            <dd className="mt-1 text-hc-muted">
+                              {selectedEvent.startTime}
+                              {selectedEvent.endTime ? ` – ${selectedEvent.endTime}` : ""}
+                            </dd>
+                          </div>
+                        )}
+                        {selectedEvent.location && (
+                          <div>
+                            <dt className="font-semibold text-hc-text">Lugar</dt>
+                            <dd className="mt-1">
+                              <a
+                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                                  selectedEvent.location
+                                )}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="whitespace-pre-wrap text-hc-yellow underline decoration-hc-yellow/50 underline-offset-4 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-hc-yellow"
+                              >
+                                {selectedEvent.location}
+                              </a>
+                            </dd>
+                          </div>
+                        )}
+                        {selectedEvent.description && (
+                          <div>
+                            <dt className="font-semibold text-hc-text">Descripción</dt>
+                            <dd className="mt-1 whitespace-pre-wrap text-hc-muted">
+                              {selectedEvent.description}
+                            </dd>
+                          </div>
+                        )}
+                      </dl>
+                    </article>
+                  ))}
+                </div>
+              </section>
+            </div>,
+            document.body
+          )
+        : null}
     </div>
   );
 }
